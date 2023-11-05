@@ -23,6 +23,23 @@ const PendingQuestion = ({
   const [editedAnswer4, setEditedAnswer4] = useState(answer4);
   const [editedCorrectId, setEditedCorrectId] = useState(correctId);
 
+  const acceptPending = async () => {
+    const response = await axios.post(
+      "http://localhost:8000/pending-question/accept-pending",
+      {
+        id: id
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    console.log("Response:", response.data);
+  };
+
   const deletePending = async () => {
     const res = await axios.delete(
       "http://localhost:8000/pending-question/delete-pending",
@@ -46,7 +63,7 @@ const PendingQuestion = ({
       answer2: editedAnswer2,
       answer3: editedAnswer3,
       answer4: editedAnswer4,
-      correctId: editedCorrectId
+      correctId: editedCorrectId,
     };
 
     const res = await axios.put(
@@ -58,7 +75,14 @@ const PendingQuestion = ({
   };
 
   return (
-    <div style={{ border: "2px solid black", padding: "15px", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        border: "2px solid black",
+        padding: "15px",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <p>Id: {id}</p>
       <label>
         Question:
@@ -126,6 +150,7 @@ const PendingQuestion = ({
       </label>
       <p>Source: {source}</p>
       <p>User ID: {userId}</p>
+      <button onClick={acceptPending}>Accept</button>
       <button onClick={saveChanges}>Save Changes</button>
       <button onClick={deletePending}>Delete</button>
     </div>

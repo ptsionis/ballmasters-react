@@ -1,10 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import PendingQuestion from "../components/PendingQuestion";
 
 const PendingQuestionsPage = () => {
   const [pendingQuestions, setPendingQuestions] = useState([]);
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/home");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,6 +50,7 @@ const PendingQuestionsPage = () => {
           />
         );
       })}
+      <button onClick={goToHome}>Go to Home</button>
     </>
   );
 };
