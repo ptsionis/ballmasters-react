@@ -1,14 +1,9 @@
 import React from "react";
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 
 const PendingQuestionPage = () => {
-  const navigate = useNavigate();
-  const goToHome = () => {
-    navigate("/home");
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -61,7 +56,7 @@ const PendingQuestionPage = () => {
         <input type="text" name="source" />
         <input type="submit" value={"SUBMIT"} />
       </form>
-      <button onClick={goToHome}>Go to Home</button>
+      <GoToHomeButton />
     </>
   );
 };

@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import PendingQuestionPage from "./pages/PendingQuestionsPage";
 import SubmitQuestionPage from "./pages/SubmitQuestionPage";
+import QuestionPage from "./pages/QuestionPage";
 import { checkIfAuthenticated } from "./utils/authUtils";
 
 const App = () => {
@@ -68,6 +69,16 @@ const App = () => {
           element={
             isAuthenticated ? (
               <PendingQuestionPage />
+            ) : (
+              <Navigate to={"/login"} replace={true} />
+            )
+          }
+        />
+        <Route
+          path="/questions"
+          element={
+            isAuthenticated ? (
+              <QuestionPage />
             ) : (
               <Navigate to={"/login"} replace={true} />
             )

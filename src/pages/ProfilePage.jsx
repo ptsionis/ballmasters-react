@@ -1,15 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
+import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 import { createProfile } from "../utils/profileUtils";
 
 const ProfilePage = () => {
-  const navigate = useNavigate();
   const [profile, setProfile] = useState({});
-
-  const goToHome = () => {
-    navigate("/home");
-  };
 
   useEffect(() => {
     createProfile(setProfile);
@@ -27,7 +22,7 @@ const ProfilePage = () => {
       ) : (
         <p>Loading user profile...</p>
       )}
-      <button onClick={goToHome}>Go to Home</button>
+      <GoToHomeButton />
     </div>
   );
 };

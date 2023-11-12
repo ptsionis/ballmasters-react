@@ -20,6 +20,10 @@ const HomePage = () => {
     navigate("/pending-questions");
   };
 
+  const goToQuestions = () => {
+    navigate("/questions");
+  };
+
   useEffect(() => {
     createProfile(setProfile);
   }, []);
@@ -36,6 +40,7 @@ const HomePage = () => {
       <button onClick={goToProfile}>Go to Profile</button>
       <button onClick={goToSubmitQuestion}>Go to Submit Question</button>
       <button onClick={goToPendingQuestions}>See all pending</button>
+      <button onClick={goToQuestions}>See all questions</button>
       <LogoutButton />
     </>
   );

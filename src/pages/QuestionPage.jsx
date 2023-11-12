@@ -2,21 +2,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
-import PendingQuestion from "../components/PendingQuestion";
+import Question from "../components/Question";
 
-const PendingQuestionsPage = () => {
-  const [pendingQuestions, setPendingQuestions] = useState([]);
+const QuestionsPage = () => {
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/pending-question/all-pending",
+          "http://localhost:8000/question/all-questions",
           {
             withCredentials: true,
           }
         );
-        setPendingQuestions(res.data);
+        setQuestions(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -27,10 +27,10 @@ const PendingQuestionsPage = () => {
 
   return (
     <>
-      <h1>PendingQuestionsPage</h1>
-      {pendingQuestions.map((item) => {
+      <h1>QuestionsPage</h1>
+      {questions.map((item) => {
         return (
-          <PendingQuestion
+          <Question
             key={item.id}
             id={item.id}
             question={item.question}
@@ -41,8 +41,6 @@ const PendingQuestionsPage = () => {
             answer3={item.answer3}
             answer4={item.answer4}
             correctId={item.correctId}
-            source={item.source}
-            userId={item.userId}
           />
         );
       })}
@@ -51,4 +49,4 @@ const PendingQuestionsPage = () => {
   );
 };
 
-export default PendingQuestionsPage;
+export default QuestionsPage;
