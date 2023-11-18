@@ -1,38 +1,40 @@
 import React from "react";
-import axios from "axios";
 
 import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 
-import { Categories } from "../../models/enums/categoriesEnum";
+import { PendingQuestion } from "../models/PendingQuestion";
+import { Categories } from "../models/enums/categoriesEnum";
 
-const PendingQuestionPage = () => {
+import { submitPendingData } from "../services/pendingQuestionService";
+
+const AdminSubmitPendingPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const data = {};
 
-    formData.forEach((value, key) => {
-      if (key === "level" || key === "correctId") {
-        data[key] = parseInt(value, 10);
-      } else {
-        data[key] = value;
-      }
-    });
+    const pendingQuestion = new PendingQuestion(
+      null,
+      formData.get("question"),
+      formData.get("category"),
+      formData.get("level"),
+      formData.get("answer1"),
+      formData.get("answer2"),
+      formData.get("answer3"),
+      formData.get("answer4"),
+      formData.get("correctId"),
+      formData.get("source"),
+      null
+    );
+
+    const postData = { ...pendingQuestion };
+    delete postData.id;
+    delete postData.userId;
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/pending-question/submit-pending",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await submitPendingData(postData);
 
-      console.log("Response:", response.data);
+      console.log("Response:", res);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -110,4 +112,4 @@ const PendingQuestionPage = () => {
   );
 };
 
-export default PendingQuestionPage;
+export default AdminSubmitPendingPage;

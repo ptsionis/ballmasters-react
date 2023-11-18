@@ -18,6 +18,9 @@ const UserPage = () => {
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
           <p>Rank: {user.getRank()}</p>
+          <p>Games Won: {user.gamesWon}</p>
+          <p>Games Played: {user.gamesPlayed}</p>
+          <p>Winrate: {user.getWinrate()}</p>
           <p>Joined: {user.getJoinedDate()}</p>
         </div>
       ) : (

@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
-import AdminPendingQuestionsPage from "./pages/AdminPendingQuestionsPage";
-import SubmitQuestionPage from "./pages/SubmitQuestionPage";
+import AdminPendingPage from "./pages/AdminPendingPage";
+import AdminSubmitPendingPage from "./pages/AdminSubmitPendingPage";
 import AdminQuestionsPage from "./pages/AdminQuestionsPage";
 import { checkIfAuthenticated } from "./utils/authUtils";
 
@@ -68,7 +68,7 @@ const App = () => {
           path="/admin-pending-questions"
           element={
             isAuthenticated ? (
-              <AdminPendingQuestionsPage />
+              <AdminPendingPage />
             ) : (
               <Navigate to={"/login"} replace={true} />
             )
@@ -88,7 +88,7 @@ const App = () => {
           path="/submit-pending"
           element={
             isAuthenticated ? (
-              <SubmitQuestionPage />
+              <AdminSubmitPendingPage />
             ) : (
               <Navigate to={"/login"} replace={true} />
             )

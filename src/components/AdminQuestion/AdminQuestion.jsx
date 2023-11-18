@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import {
   updateQuestionData,
   deleteQuestionData,
 } from "../../services/questionService";
-import { Question } from "../../../models/Question";
+import { Question } from "../../models/Question";
 
 const AdminQuestion = (currentQuestion) => {
   const [editedQuestion, setEditedQuestion] = useState(

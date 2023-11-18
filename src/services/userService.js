@@ -1,17 +1,18 @@
+import axios from "axios";
 import { checkIfAuthenticated } from "../utils/authUtils";
 
 export const fetchUserData = async () => {
   try {
     const isAuthenticated = await checkIfAuthenticated();
     if (isAuthenticated) {
-      const res = await fetch(
+      const response = await axios.get(
         "http://localhost:8000/user/profile",
         {
-          credentials: "include",
+          withCredentials: true,
         }
       );
-      const data = await res.json();
-      return data.profile;
+      const userData = response.data;
+      return userData.profile;
     }
   } catch (error) {
     console.error("Failed to fetch user data:", error);

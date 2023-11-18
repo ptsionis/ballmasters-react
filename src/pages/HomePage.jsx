@@ -6,7 +6,7 @@ import { createUser } from "../utils/userUtils";
 //TO BE REMOVED
 import { createQuestion } from "../utils/questionUtils";
 //TO BE REMOVED
-import { Categories } from "../../models/enums/categoriesEnum";
+import { Categories } from "../models/enums/categoriesEnum";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -50,8 +50,8 @@ const HomePage = () => {
       </div>
       <button onClick={goToProfile}>Go to Profile</button>
       <button onClick={goToSubmitQuestion}>Go to Submit Question</button>
-      <button onClick={goToPendingQuestions}>See all pending</button>
-      <button onClick={goToQuestions}>See all questions</button>
+      <button onClick={goToPendingQuestions} style={{backgroundColor: "bisque"}}>See all pending</button>
+      <button onClick={goToQuestions} style={{backgroundColor: "bisque"}}>See all questions</button>
       <LogoutButton />
       {/* TO BE REMOVED */}
       <br /><br />

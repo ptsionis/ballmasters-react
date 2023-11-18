@@ -1,9 +1,10 @@
 import { fetchQuestionData } from "../services/questionService";
-import { Question } from "../../models/Question";
+import { Question } from "../models/Question";
 
 export const createQuestion = async (setQuestion, category, level) => {
   try {
     const data = await fetchQuestionData(category, level);
+    console.log(data);
     const question = new Question(
       data.id,
       data.question,

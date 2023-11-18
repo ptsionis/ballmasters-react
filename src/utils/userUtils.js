@@ -1,5 +1,5 @@
 import { fetchUserData } from "../services/userService";
-import { User } from "../../models/User";
+import { User } from "../models/User";
 
 export const createUser = async (setUser) => {
   try {

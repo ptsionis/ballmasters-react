@@ -5,14 +5,15 @@ export const fetchQuestionData = async (category, level) => {
   try {
     const isAuthenticated = await checkIfAuthenticated();
     if (isAuthenticated) {
-      const res = await fetch(
+      const res = await axios.get(
         `http://localhost:8000/question?category=${category}&level=${level}`,
         {
-          credentials: "include",
+          withCredentials: true,
         }
       );
-      console.log(res.data)
-      return res.data;
+      const questionData = res.data;
+      console.log(questionData);
+      return questionData;
     }
   } catch (error) {
     console.error("Failed to fetch question data:", error);
@@ -20,7 +21,7 @@ export const fetchQuestionData = async (category, level) => {
   }
 };
 
-export const fetchAllQuestionData = async (category, level) => {
+export const fetchAllQuestionData = async () => {
   try {
     const isAuthenticated = await checkIfAuthenticated();
     if (isAuthenticated) {
@@ -30,8 +31,8 @@ export const fetchAllQuestionData = async (category, level) => {
           withCredentials: true,
         }
       );
-      console.log(res.data)
-      return res.data;
+      const allQuestionsData = res.data;
+      return allQuestionsData;
     }
   } catch (error) {
     console.error("Failed to fetch all questions data:", error);
@@ -54,7 +55,7 @@ export const updateQuestionData = async (question) => {
     console.error("Failed to update question data:", error);
     return null;
   }
-}
+};
 
 export const deleteQuestionData = async (id) => {
   try {
@@ -75,4 +76,4 @@ export const deleteQuestionData = async (id) => {
     console.error("Failed to delete question data:", error);
     return null;
   }
-}
+};

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 import AdminPendingQuestion from "../components/AdminPendingQuestion/AdminPendingQuestion";
 
-const AdminPendingQuestionsPage = () => {
+const AdminPendingPage = () => {
   const [pendingQuestions, setPendingQuestions] = useState([]);
 
   useEffect(() => {
@@ -51,4 +51,4 @@ const AdminPendingQuestionsPage = () => {
   );
 };
 
-export default AdminPendingQuestionsPage;
+export default AdminPendingPage;
