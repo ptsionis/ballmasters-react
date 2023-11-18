@@ -28,62 +28,6 @@ export class User {
     }
 
     getJoinedDate() {
-        return this.createdAt;
+        return this.createdAt.split("T")[0];
     }
-
-    // get id() {
-    //     return this.id;
-    // }
-
-    // get username() {
-    //     return this.username;
-    // }
-
-    // get email() {
-    //     return this.email;
-    // }
-
-    // get score() {
-    //     return this.score;
-    // }
-
-    // get gamesPlayed() {
-    //     return this.gamesPlayed;
-    // }
-
-    // get gamesWon() {
-    //     return this.gamesWon;
-    // }
-
-    // get createdAt() {
-    //     return this.createdAt;
-    // }
-
-    // set id(id) {
-    //     this.id = id;
-    // }
-
-    // set username(username) {
-    //     this.username = username;
-    // }
-
-    // set email(email) {
-    //     this.email = email;
-    // }
-
-    // set score(score) {
-    //     this.score = score;
-    // }
-
-    // set gamesPlayed(gamesPlayed) {
-    //     this.gamesPlayed =gamesPlayed;
-    // }
-
-    // set gamesWon(gamesWon) {
-    //     this.gamesWon = gamesWon;
-    // }
-
-    // set createdAt(createdAt) {
-    //     this.createdAt = createdAt;
-    // }
 }

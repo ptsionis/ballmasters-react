@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Question = ({
+const AdminPendingQuestion = ({
   id,
   question,
   category,
@@ -10,7 +10,9 @@ const Question = ({
   answer2,
   answer3,
   answer4,
-  correctId
+  correctId,
+  source,
+  userId,
 }) => {
   const [editedQuestion, setEditedQuestion] = useState(question);
   const [editedCategory, setEditedCategory] = useState(category);
@@ -21,9 +23,26 @@ const Question = ({
   const [editedAnswer4, setEditedAnswer4] = useState(answer4);
   const [editedCorrectId, setEditedCorrectId] = useState(correctId);
 
-  const deleteQuestion = async () => {
+  const acceptPending = async () => {
+    const response = await axios.post(
+      "http://localhost:8000/pending-question/accept-pending",
+      {
+        id: id
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    console.log("Response:", response.data);
+  };
+
+  const deletePending = async () => {
     const res = await axios.delete(
-      "http://localhost:8000/question/delete-question",
+      "http://localhost:8000/pending-question/delete-pending",
       {
         withCredentials: true,
         data: {
@@ -48,7 +67,7 @@ const Question = ({
     };
 
     const res = await axios.put(
-      "http://localhost:8000/question/update-question",
+      "http://localhost:8000/pending-question/update-pending",
       updatedData,
       { withCredentials: true }
     );
@@ -129,10 +148,13 @@ const Question = ({
           onChange={(e) => setEditedCorrectId(e.target.value)}
         />
       </label>
+      <p>Source: {source}</p>
+      <p>User ID: {userId}</p>
+      <button onClick={acceptPending}>Accept</button>
       <button onClick={saveChanges}>Save Changes</button>
-      <button onClick={deleteQuestion}>Delete</button>
+      <button onClick={deletePending}>Delete</button>
     </div>
   );
 };
 
-export default Question;
+export default AdminPendingQuestion;

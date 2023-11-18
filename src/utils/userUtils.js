@@ -1,9 +1,9 @@
-import { getProfile } from "../services/userService";
+import { fetchUserData } from "../services/userService";
 import { User } from "../../models/User";
 
-export const createProfile = async (setProfile) => {
+export const createUser = async (setUser) => {
   try {
-    const data = await getProfile();
+    const data = await fetchUserData();
     const user = new User(
       data.id,
       data.username,
@@ -13,8 +13,8 @@ export const createProfile = async (setProfile) => {
       data.gamesWon,
       data.createdAt
     );
-    setProfile(user);
+    setUser(user);
   } catch (error) {
-    console.error("Error fetching user profile:", error);
+    console.error("Error creating user:", error);
   }
 };

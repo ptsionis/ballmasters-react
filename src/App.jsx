@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import ProfilePage from "./pages/ProfilePage";
-import PendingQuestionPage from "./pages/PendingQuestionsPage";
+import UserPage from "./pages/UserPage";
+import AdminPendingQuestionsPage from "./pages/AdminPendingQuestionsPage";
 import SubmitQuestionPage from "./pages/SubmitQuestionPage";
-import QuestionPage from "./pages/QuestionPage";
+import AdminQuestionsPage from "./pages/AdminQuestionsPage";
 import { checkIfAuthenticated } from "./utils/authUtils";
 
 const App = () => {
@@ -58,27 +58,27 @@ const App = () => {
           path="/profile"
           element={
             isAuthenticated ? (
-              <ProfilePage />
+              <UserPage />
             ) : (
               <Navigate to={"/login"} replace={true} />
             )
           }
         />
         <Route
-          path="/pending-questions"
+          path="/admin-pending-questions"
           element={
             isAuthenticated ? (
-              <PendingQuestionPage />
+              <AdminPendingQuestionsPage />
             ) : (
               <Navigate to={"/login"} replace={true} />
             )
           }
         />
         <Route
-          path="/questions"
+          path="/admin-questions"
           element={
             isAuthenticated ? (
-              <QuestionPage />
+              <AdminQuestionsPage />
             ) : (
               <Navigate to={"/login"} replace={true} />
             )
