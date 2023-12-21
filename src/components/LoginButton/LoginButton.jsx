@@ -1,15 +1,18 @@
 import React from "react";
-
-import "./LoginButton.css";
+import { login } from "../../services/authServices";
 
 const LoginButton = () => {
   const goToLogin = () => {
-    window.location.href = "http://localhost:8000/auth/facebook";
+    login();
   };
 
   return (
-    <button className="loginBtn loginBtn--facebook" onClick={goToLogin}>
-      Login with Facebook
+    <button
+      className="btn btn-primary d-flex justify-content-center align-items-center"
+      onClick={goToLogin}
+    >
+      <img className="me-2" src="/images/svg/facebook.svg" alt="Facebook" />
+      Login
     </button>
   );
 };

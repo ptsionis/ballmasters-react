@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 
-import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 import { createUser } from "../utils/userUtils";
 
 const UserPage = () => {
@@ -26,7 +25,6 @@ const UserPage = () => {
       ) : (
         <p>Loading user profile...</p>
       )}
-      <GoToHomeButton />
     </div>
   );
 };

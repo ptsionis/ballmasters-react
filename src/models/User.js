@@ -1,9 +1,19 @@
 export class User {
-  constructor(id, username, email, score, gamesPlayed, gamesWon, createdAt) {
+  constructor(
+    id,
+    username,
+    email,
+    score,
+    friends,
+    gamesPlayed,
+    gamesWon,
+    createdAt
+  ) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.score = score;
+    this.friends = friends;
     this.gamesPlayed = gamesPlayed;
     this.gamesWon = gamesWon;
     this.createdAt = createdAt;
@@ -11,11 +21,11 @@ export class User {
 
   getRank() {
     if (this.score < 500) {
-      return "Novice";
+      return "Amateur";
     } else if (this.score < 1000) {
-      return "Apprentice";
+      return "Beginner";
     } else if (this.score < 1500) {
-      return "Adept";
+      return "Pro";
     } else if (this.score < 2000) {
       return "Master";
     } else if (this.score < 2500) {

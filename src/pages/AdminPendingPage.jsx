@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 import AdminPendingQuestion from "../components/AdminPendingQuestion/AdminPendingQuestion";
 
 const AdminPendingPage = () => {
@@ -46,7 +45,6 @@ const AdminPendingPage = () => {
           />
         );
       })}
-      <GoToHomeButton />
     </>
   );
 };

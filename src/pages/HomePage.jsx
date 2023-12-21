@@ -1,63 +1,40 @@
-import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useContext, useState } from "react";
+import Navbar from "../components/Nav/Navbar";
 
-import LogoutButton from "../components/LogoutButton/LogoutButton";
-import { createUser } from "../utils/userUtils";
-//TO BE REMOVED
-import { createQuestion } from "../utils/questionUtils";
-//TO BE REMOVED
-import { Categories } from "../models/enums/categoriesEnum";
+import FriendList from "../components/FriendList/FriendList";
+import { AppContext } from "../App";
+import { homeInitialization } from "../utils/pagesUtils";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  //TO BE REMOVED
-  const [history1, setHistory1] = useState(null);
-
-  const goToProfile = () => {
-    navigate("/profile");
-  };
-
-  const goToSubmitQuestion = () => {
-    navigate("/submit-pending");
-  };
-
-  const goToPendingQuestions = () => {
-    navigate("/admin-pending-questions");
-  };
-
-  const goToQuestions = () => {
-    navigate("/admin-questions");
-  };
-
-  //TO BE REMOVED
-  const printHistory1 = () => {
-    createQuestion(setHistory1, Categories.HISTORY, 1);
-  }
+  const { socket, user, setUser } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    createUser(setUser);
+    homeInitialization(socket, setUser);
+    setIsLoading(false);
   }, []);
 
+  if (isLoading) {
+    return <div>Loading....</div>;
+  }
+
   return (
-    <>
-      <div>
-        {user ? (
-          <h1>Welcome {user.username}</h1>
-        ) : (
-          <p>Loading user profile...</p>
-        )}
+    <div className="page container-fluid">
+      <Navbar />
+      <div className="container-fluid flex-grow-1 d-grid grid-container">
+        <div className="row grid-content">
+          <div>{user ? <h1>Welcome {user.username}</h1> : null}</div>
+          {user && (
+            <FriendList
+              userId={user.id}
+              friends={[...user.friends].sort((a, b) =>
+                a.username.localeCompare(b.username)
+              )}
+            />
+          )}
+        </div>
       </div>
-      <button onClick={goToProfile}>Go to Profile</button>
-      <button onClick={goToSubmitQuestion}>Go to Submit Question</button>
-      <button onClick={goToPendingQuestions} style={{backgroundColor: "bisque"}}>See all pending</button>
-      <button onClick={goToQuestions} style={{backgroundColor: "bisque"}}>See all questions</button>
-      <LogoutButton />
-      {/* TO BE REMOVED */}
-      <br /><br />
-      <button onClick={printHistory1}>HISTORY 1</button>
-      {history1 ? <p>{history1.question}</p> : <p>"Waiting for click..."</p>}
-    </>
+    </div>
   );
 };
 

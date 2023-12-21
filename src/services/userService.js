@@ -5,14 +5,11 @@ export const fetchUserData = async () => {
   try {
     const isAuthenticated = await checkIfAuthenticated();
     if (isAuthenticated) {
-      const response = await axios.get(
-        "http://localhost:8000/user/profile",
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get("http://localhost:8000/user/profile", {
+        withCredentials: true,
+      });
       const userData = response.data;
-      return userData.profile;
+      return userData;
     }
   } catch (error) {
     console.error("Failed to fetch user data:", error);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
@@ -7,10 +7,32 @@ import AdminPendingPage from "./pages/AdminPendingPage";
 import AdminSubmitPendingPage from "./pages/AdminSubmitPendingPage";
 import AdminQuestionsPage from "./pages/AdminQuestionsPage";
 import { checkIfAuthenticated } from "./utils/authUtils";
+import socket from "./socketService";
+
+export const AppContext = createContext(null);
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState("/");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "/":
+        return <HomePage />;
+      case "profile":
+        return <UserPage />;
+      case "admin-pending-questions":
+        return <AdminPendingPage />;
+      case "admin-questions":
+        return <AdminQuestionsPage />;
+      case "submit-pending":
+        return <AdminSubmitPendingPage />;
+      default:
+        return null;
+    }
+  };
 
   useEffect(() => {
     const fetchAuthentication = async () => {
@@ -18,77 +40,47 @@ const App = () => {
         const isAuthenticated = await checkIfAuthenticated();
         setIsAuthenticated(isAuthenticated);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchAuthentication();
   }, []);
 
-  if (loading) {
-    //TO-DO: Add spinner
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <div>Loading....</div>;
   }
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to={"/home"} replace={true} />} />
         <Route
           path="/login"
           element={
             !isAuthenticated ? (
               <LoginPage />
             ) : (
-              <Navigate to={"/home"} replace={true} />
+              <Navigate to={"/"} replace={true} />
             )
           }
         />
         <Route
-          path="/home"
+          path="/"
           element={
             isAuthenticated ? (
-              <HomePage />
-            ) : (
-              <Navigate to={"/login"} replace={true} />
-            )
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            isAuthenticated ? (
-              <UserPage />
-            ) : (
-              <Navigate to={"/login"} replace={true} />
-            )
-          }
-        />
-        <Route
-          path="/admin-pending-questions"
-          element={
-            isAuthenticated ? (
-              <AdminPendingPage />
-            ) : (
-              <Navigate to={"/login"} replace={true} />
-            )
-          }
-        />
-        <Route
-          path="/admin-questions"
-          element={
-            isAuthenticated ? (
-              <AdminQuestionsPage />
-            ) : (
-              <Navigate to={"/login"} replace={true} />
-            )
-          }
-        />
-        <Route
-          path="/submit-pending"
-          element={
-            isAuthenticated ? (
-              <AdminSubmitPendingPage />
+              <AppContext.Provider
+                value={{
+                  socket,
+                  isAuthenticated,
+                  setIsAuthenticated,
+                  user,
+                  setUser,
+                  currentPage,
+                  setCurrentPage,
+                }}
+              >
+                {renderPage()}
+              </AppContext.Provider>
             ) : (
               <Navigate to={"/login"} replace={true} />
             )

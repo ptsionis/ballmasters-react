@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { fetchAllQuestionData } from "../services/questionService";
 
-import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
 import AdminQuestion from "../components/AdminQuestion/AdminQuestion";
 
 const AdminQuestionsPage = () => {
@@ -17,7 +16,7 @@ const AdminQuestionsPage = () => {
         // Handle errors if any
         console.error("Error fetching data:", error);
       }
-    }
+    };
 
     fetchData();
   }, []);
@@ -28,7 +27,6 @@ const AdminQuestionsPage = () => {
       {questions.map((question) => {
         return <AdminQuestion key={question.id} {...question} />;
       })}
-      <GoToHomeButton />
     </>
   );
 };

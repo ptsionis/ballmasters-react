@@ -5,13 +5,14 @@ export const createUser = async (setUser) => {
   try {
     const data = await fetchUserData();
     const user = new User(
-      data.id,
-      data.username,
-      data.email,
-      data.score,
-      data.gamesPlayed,
-      data.gamesWon,
-      data.createdAt
+      data.profile.id,
+      data.profile.username,
+      data.profile.email,
+      data.profile.score,
+      data.friends,
+      data.profile.gamesPlayed,
+      data.profile.gamesWon,
+      data.profile.createdAt
     );
     setUser(user);
   } catch (error) {

@@ -1,12 +1,12 @@
 import React from "react";
+import { logout } from "../../services/authServices";
 
 const LogoutButton = () => {
-  const goToLogout = () => {
-    window.location.href = "http://localhost:8000/auth/logout";
+  const userLogout = () => {
+    logout();
   };
-
   return (
-    <button onClick={goToLogout}>
+    <button className="btn w-100 btn-danger" onClick={userLogout}>
       Logout
     </button>
   );

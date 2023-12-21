@@ -1,7 +1,5 @@
 import React from "react";
 
-import GoToHomeButton from "../components/GoToHomeButton/GoToHomeButton";
-
 import { PendingQuestion } from "../models/PendingQuestion";
 import { Categories } from "../models/enums/categoriesEnum";
 
@@ -107,7 +105,6 @@ const AdminSubmitPendingPage = () => {
         <input type="text" name="source" />
         <input type="submit" value={"SUBMIT"} />
       </form>
-      <GoToHomeButton />
     </>
   );
 };
