@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../App";
 
 import LogoutButton from "../LogoutButton/LogoutButton";
 
 const Dropdown = () => {
+  const { setCurrentPage } = useContext(AppContext);
+
   return (
     <div>
       <div role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,9 +18,14 @@ const Dropdown = () => {
       </div>
       <ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end text-end">
         <li>
-          <a className="dropdown-item" href="/profile">
+          <button
+            className="dropdown-item"
+            onClick={() => {
+              setCurrentPage("profile");
+            }}
+          >
             Profile
-          </a>
+          </button>
         </li>
         <li>
           <a className="dropdown-item" href="#">

@@ -1,17 +1,13 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../App";
 
-import "./FriendItem.css";
+import AvailabilityIcon from "../AvailabilityIcon/AvailabilityIcon";
+import ChallengeButton from "../ChallengeButton/ChallengeButton";
+import { Availabilities } from "../../models/enums/availabilityEnum";
 
 const FriendItem = ({ friend }) => {
-  const [isOnline, setIsOnline] = useState(false);
   const { socket } = useContext(AppContext);
-
-  socket.on("friendStatus", ({ userId, status }) => {
-    if (userId === friend.id) {
-      setIsOnline(status);
-    }
-  });
+  const [availability, setAvailability] = useState(Availabilities.OFFLINE);
 
   const getMedal = () => {
     if (friend.score < 500) {
@@ -31,22 +27,26 @@ const FriendItem = ({ friend }) => {
     }
   };
 
-  const onlineVisibility = isOnline ? "visible" : "invisible";
+  socket.on("friendStatus", ({ userId, status }) => {
+    if (userId === friend.id) {
+      setAvailability(status);
+    }
+  });
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
-      <div
-        className={`${onlineVisibility} online-now me-3`}
-        title="Online"
-      ></div>
-      <span className="me-2">{friend.username}</span>
-      <img
-        src={`/images/medals/medal_${getMedal()}.png`}
-        height={35}
-        alt={getMedal()}
-        title={getMedal().charAt(0).toUpperCase() + getMedal().slice(1)}
-      />
-    </div>
+    <>
+      <div className="d-flex justify-content-center align-items-center">
+        <AvailabilityIcon availability={availability} />
+        <span className="me-2">{friend.username}</span>
+        <img
+          src={`/images/medals/medal_${getMedal()}.png`}
+          height={35}
+          alt={getMedal()}
+          title={getMedal().charAt(0).toUpperCase() + getMedal().slice(1)}
+        />
+      </div>
+      <ChallengeButton availability={availability} />
+    </>
   );
 };
 

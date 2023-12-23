@@ -75,7 +75,6 @@ const App = () => {
                   setIsAuthenticated,
                   user,
                   setUser,
-                  currentPage,
                   setCurrentPage,
                 }}
               >

@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from "react";
-import socket from "../../socketService";
+import React, { useEffect, useContext } from "react";
+import { AppContext } from "../../App";
 
 import FriendItem from "../FriendItem/FriendItem";
-import ChallengeButton from "../ChallengeButton/ChallengeButton";
 
-const FriendList = ({ userId, friends }) => {
+const FriendList = () => {
+  const { socket, user } = useContext(AppContext);
+
   useEffect(() => {
-    socket.emit("login", userId);
+    socket.emit("login", user.id);
   }, []);
+
   return (
-    <div className="d-flex flex-column justify-content-start align-items-center px-3 py-4 bg-secondary">
+    <section className="d-flex flex-column justify-content-start align-items-center px-3 py-4 bg-secondary">
       <h3>My Friends</h3>
       <ul className="w-100 list-unstyled">
-        {friends &&
-          friends.map((friend, index) => (
+        {user.friends &&
+          user.friends.map((friend, index) => (
             <li
               className="w-100 d-flex justify-content-between align-items-center my-2 p-2 rounded bg-light"
               key={index}
             >
               <FriendItem friend={friend} />
-              <ChallengeButton />
             </li>
           ))}
       </ul>
-    </div>
+    </section>
   );
 };
 
