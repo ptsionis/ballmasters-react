@@ -39,7 +39,7 @@ const FriendItem = ({ friend }) => {
         <AvailabilityIcon availability={availability} />
         <span className="me-2">{friend.username}</span>
         <img
-          src={`/images/medals/medal_${getMedal()}.png`}
+          src={`/images/medals/medal_${getMedal()}.webp`}
           height={35}
           alt={getMedal()}
           title={getMedal().charAt(0).toUpperCase() + getMedal().slice(1)}
