@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import Navbar from "../components/Nav/Navbar";
 import AdminPendingQuestion from "../components/AdminPendingQuestion/AdminPendingQuestion";
 
 const AdminPendingPage = () => {
   const [pendingQuestions, setPendingQuestions] = useState([]);
 
-  useEffect(() => {
+  const loadPendingQuestions = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
@@ -20,32 +21,39 @@ const AdminPendingPage = () => {
         console.log(err);
       }
     };
-
     fetchData();
+  };
+
+  useEffect(() => {
+    loadPendingQuestions();
   }, []);
 
   return (
-    <>
-      <h1>Admin Pending Questions Page</h1>
-      {pendingQuestions.map((item) => {
-        return (
-          <AdminPendingQuestion
-            key={item.id}
-            id={item.id}
-            question={item.question}
-            category={item.category}
-            level={item.level}
-            answer1={item.answer1}
-            answer2={item.answer2}
-            answer3={item.answer3}
-            answer4={item.answer4}
-            correctId={item.correctId}
-            source={item.source}
-            userId={item.userId}
-          />
-        );
-      })}
-    </>
+    <div className="page container-fluid">
+      <Navbar />
+      <main className="container flex-grow-1 d-flex flex-column justify-content-center">
+        <h2 className="text-center">Admin Pending Questions Page</h2>
+        {pendingQuestions.map((item) => {
+          return (
+            <AdminPendingQuestion
+              key={item.id}
+              id={item.id}
+              question={item.question}
+              category={item.category}
+              level={item.level}
+              answer1={item.answer1}
+              answer2={item.answer2}
+              answer3={item.answer3}
+              answer4={item.answer4}
+              correctId={item.correctId}
+              source={item.source}
+              userId={item.userId}
+              loadPendingQuestions={loadPendingQuestions}
+            />
+          );
+        })}
+      </main>
+    </div>
   );
 };
 

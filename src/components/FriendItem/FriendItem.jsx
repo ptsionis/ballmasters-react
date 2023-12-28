@@ -4,6 +4,7 @@ import { AppContext } from "../../App";
 import AvailabilityIcon from "../AvailabilityIcon/AvailabilityIcon";
 import ChallengeButton from "../ChallengeButton/ChallengeButton";
 import { Availabilities } from "../../models/enums/availabilityEnum";
+import { capitalizeFirstLetter } from "../../utils/otherUtils";
 
 const FriendItem = ({ friend }) => {
   const { socket } = useContext(AppContext);
@@ -42,7 +43,7 @@ const FriendItem = ({ friend }) => {
           src={`/images/medals/medal_${getMedal()}.webp`}
           height={35}
           alt={getMedal()}
-          title={getMedal().charAt(0).toUpperCase() + getMedal().slice(1)}
+          title={capitalizeFirstLetter(getMedal())}
         />
       </div>
       <ChallengeButton availability={availability} />

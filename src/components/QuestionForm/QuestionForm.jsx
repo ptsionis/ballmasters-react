@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { PendingQuestion } from "../../models/PendingQuestion";
 import Modal from "../Modal/Modal";
@@ -92,10 +92,10 @@ const QuestionForm = () => {
                   type="radio"
                   name="level"
                   value={level}
-                  id={level}
+                  id={`level-${level}`}
                   required
                 />
-                <label className="ps-1 pe-3" htmlFor={level}>
+                <label className="ps-1 pe-3" htmlFor={`level-${level}`}>
                   {level}
                 </label>
               </React.Fragment>
@@ -159,12 +159,15 @@ const QuestionForm = () => {
               <React.Fragment key={correctId}>
                 <input
                   type="radio"
-                  name="correctId"
+                  name={`correctId`}
                   value={correctId}
-                  id={correctId}
+                  id={`correctId-ci${correctId}`}
                   required
                 />
-                <label className="ps-1 pe-3" htmlFor={correctId}>
+                <label
+                  className="ps-1 pe-3"
+                  htmlFor={`correctId-ci${correctId}`}
+                >
                   {correctId}
                 </label>
               </React.Fragment>
@@ -173,7 +176,12 @@ const QuestionForm = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="source">Source URL</label>
-          <input className="form-control" type="text" name="source" />
+          <input
+            className="form-control"
+            type="text"
+            name="source"
+            maxLength={2048}
+          />
         </div>
         <button className="btn btn-primary my-4" type="submit">
           Submit

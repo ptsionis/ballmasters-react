@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import LogoutButton from "../LogoutButton/LogoutButton";
 
 const Dropdown = () => {
-  const { setCurrentPage } = useContext(AppContext);
+  const { user, setCurrentPage } = useContext(AppContext);
 
   return (
     <div>
@@ -37,6 +37,18 @@ const Dropdown = () => {
             Submit Question
           </button>
         </li>
+        {user && user.role !== "user" ? (
+          <li>
+            <button
+              className="dropdown-item text-danger"
+              onClick={() => {
+                setCurrentPage("admin-pending-questions");
+              }}
+            >
+              Pending Questions
+            </button>
+          </li>
+        ) : null}
         <li className="mt-3 mx-2 text-center">
           <LogoutButton />
         </li>
