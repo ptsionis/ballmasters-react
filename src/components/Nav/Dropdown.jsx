@@ -28,14 +28,14 @@ const Dropdown = () => {
           </button>
         </li>
         <li>
-          <a className="dropdown-item" href="#">
-            Settings
-          </a>
-        </li>
-        <li>
-          <a className="dropdown-item" href="/submit-pending">
+          <button
+            className="dropdown-item"
+            onClick={() => {
+              setCurrentPage("submit-pending");
+            }}
+          >
             Submit Question
-          </a>
+          </button>
         </li>
         <li className="mt-3 mx-2 text-center">
           <LogoutButton />

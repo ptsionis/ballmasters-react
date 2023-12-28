@@ -7,6 +7,7 @@ export const createUser = async (setUser) => {
     const user = new User(
       data.profile.id,
       data.profile.username,
+      data.profile.role,
       data.profile.email,
       data.profile.score,
       data.friends,

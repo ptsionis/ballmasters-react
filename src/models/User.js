@@ -2,6 +2,7 @@ export class User {
   constructor(
     id,
     username,
+    role,
     email,
     score,
     friends,
@@ -12,6 +13,7 @@ export class User {
     this.id = id;
     this.username = username;
     this.email = email;
+    this.role = role;
     this.score = score;
     this.friends = friends;
     this.gamesPlayed = gamesPlayed;

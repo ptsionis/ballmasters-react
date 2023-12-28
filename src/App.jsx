@@ -1,10 +1,11 @@
 import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Loader from "./components/Loader/Loader";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import AdminPendingPage from "./pages/AdminPendingPage";
-import AdminSubmitPendingPage from "./pages/AdminSubmitPendingPage";
+import SubmitPendingPage from "./pages/SubmitPendingPage";
 import AdminQuestionsPage from "./pages/AdminQuestionsPage";
 import { checkIfAuthenticated } from "./utils/authUtils";
 import socket from "./socketService";
@@ -28,7 +29,7 @@ const App = () => {
       case "admin-questions":
         return <AdminQuestionsPage />;
       case "submit-pending":
-        return <AdminSubmitPendingPage />;
+        return <SubmitPendingPage />;
       default:
         return null;
     }
@@ -48,7 +49,7 @@ const App = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return <Loader />;
   }
 
   return (

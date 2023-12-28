@@ -7,7 +7,7 @@ const Navbar = () => {
   const { isAuthenticated } = useContext(AppContext);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark border-bottom">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           BallMasters
