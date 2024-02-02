@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../../App";
 
 import LogoutButton from "../LogoutButton/LogoutButton";
+import { Roles } from "../../models/enums/rolesEnum";
 
 const Dropdown = () => {
   const { user, setCurrentPage } = useContext(AppContext);
@@ -37,7 +38,7 @@ const Dropdown = () => {
             Submit Question
           </button>
         </li>
-        {user && user.role !== "user" ? (
+        {user && user.role !== Roles.USER ? (
           <li>
             <button
               className="dropdown-item text-danger"
