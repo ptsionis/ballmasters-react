@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import Dropdown from "./Dropdown";
+import { AppContext } from "../../App";
 
 const Navbar = () => {
+  const { user, setCurrentPage } = useContext(AppContext);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark border-bottom">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <span
+          className="text-light"
+          onClick={() => {
+            setCurrentPage("/");
+          }}
+          style={{ cursor: "pointer" }}
+        >
           BallMasters
-        </a>
+        </span>
         <Dropdown />
       </div>
     </nav>

@@ -13,5 +13,9 @@
 }
 
 .playing {
-  background: linear-gradient(to bottom right, #086d08, #0db40d, #0bec0b);
+  background: linear-gradient(to bottom right, #d31709, #e71607, #f31202);
+}
+
+.pending {
+  background: linear-gradient(to bottom right, #cfac0f, #e2ba09, #f3c704);
 }
