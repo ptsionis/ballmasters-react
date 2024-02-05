@@ -6,6 +6,8 @@ import FriendList from "../components/FriendList/FriendList";
 import { AppContext } from "../App";
 import { homeInitialization } from "../utils/pagesUtils";
 
+import "./HomePage.css";
+
 const HomePage = () => {
   const { socket, user, setUser } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,19 +22,15 @@ const HomePage = () => {
   }
 
   return (
-    <div className="page container-fluid">
-      <Navbar />
-      <main className="container-fluid flex-grow-1 d-grid grid-container">
-        <div className="row grid-content">
-          {user && (
-            <>
-              <Welcome />
-              <FriendList />
-            </>
-          )}
-        </div>
-      </main>
-    </div>
+    <main className="home-main">
+      {user && (
+        <>
+          <div className="home-section">Profile Highlights</div>
+          <Welcome />
+          <FriendList />
+        </>
+      )}
+    </main>
   );
 };
 

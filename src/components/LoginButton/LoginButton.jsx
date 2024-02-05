@@ -1,17 +1,20 @@
 import React from "react";
 import { login } from "../../services/authServices";
 
+import "./LoginButton.css";
+
 const LoginButton = () => {
   const goToLogin = () => {
     login();
   };
 
   return (
-    <button
-      className="btn btn-primary d-flex justify-content-center align-items-center"
-      onClick={goToLogin}
-    >
-      <img className="me-2" src="/images/svg/facebook.svg" alt="Facebook" />
+    <button className="login-button" onClick={goToLogin}>
+      <img
+        className="login-button-img"
+        src="/images/svg/facebook.svg"
+        alt="Facebook"
+      />
       Login
     </button>
   );

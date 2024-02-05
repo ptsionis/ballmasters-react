@@ -3,12 +3,16 @@ import { AppContext } from "../../App";
 
 import AvailabilityIcon from "../AvailabilityIcon/AvailabilityIcon";
 import ChallengeButton from "../ChallengeButton/ChallengeButton";
+import ChallengeAcceptButton from "../ChallengeAcceptButton/ChallengeAcceptButton";
+import ChallengeDeclineButton from "../ChallengeDeclineButton/ChallengeDeclineButton";
 import { Availabilities } from "../../models/enums/availabilityEnum";
-import { capitalizeFirstLetter } from "../../utils/otherUtils";
+
+import "./FriendItem.css";
 
 const FriendItem = ({ friend }) => {
   const { socket } = useContext(AppContext);
   const [availability, setAvailability] = useState(Availabilities.OFFLINE);
+  const [challengedMe, setChallengedMe] = useState(false);
 
   socket.on("friendStatus", ({ userId, status }) => {
     if (userId === friend.id) {
@@ -16,7 +20,18 @@ const FriendItem = ({ friend }) => {
     }
   });
 
-  socket.on("challenge_notification", (challengerUserId) => {});
+  socket.on("challenge_notification", (challengerUserId) => {
+    if (friend.id === challengerUserId) {
+      setChallengedMe(true);
+    }
+  });
+
+  socket.on("challenge_rejected", (challengerUserId) => {
+    if (friend.id === challengerUserId) {
+      setChallengedMe(false);
+      setAvailability(Availabilities.ONLINE);
+    }
+  });
 
   socket.on("challenge_sent", (targetUserId) => {
     if (friend.id === targetUserId) {
@@ -26,11 +41,18 @@ const FriendItem = ({ friend }) => {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center">
+      <div className="frienditem-name">
         <AvailabilityIcon availability={availability} />
-        <span className="me-2">{friend.username}</span>
+        <span className="frienditem-name-span">{friend.username}</span>
       </div>
-      <ChallengeButton friendId={friend.id} availability={availability} />
+      {challengedMe ? (
+        <div className="challenge-response-wrapper">
+          <ChallengeAcceptButton />
+          <ChallengeDeclineButton friendId={friend.id} />
+        </div>
+      ) : (
+        <ChallengeButton friendId={friend.id} availability={availability} />
+      )}
     </>
   );
 };

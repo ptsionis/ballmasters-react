@@ -1,0 +1,27 @@
+.friendlist {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.friendlist-ul {
+  width: 100%;
+  list-style: none;
+  margin-top: 15px;
+  overflow-y: auto;
+}
+
+.friendlist-ul::-webkit-scrollbar {
+  display: none;
+}
+
+.friendlist-li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #2c2c2c;
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+}

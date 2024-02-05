@@ -1,0 +1,20 @@
+.challenge-accept-button {
+  width: 45px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2.5px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: #088b4a;
+}
+
+.challenge-accept-button:hover {
+  background-color: #097c43;
+  transform: scale(1.0375);
+}

@@ -1,12 +1,12 @@
 import React from "react";
 
+import "./Loader.css";
+
 const Loader = () => {
   return (
-    <div className="page container-fluid d-flex justify-content-center align-items-center">
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    </div>
+    <main className="loader">
+      <div className="lds-dual-ring"></div>
+    </main>
   );
 };
 

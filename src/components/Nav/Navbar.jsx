@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, setCurrentPage } = useContext(AppContext);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark border-bottom">
+    <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
       <div className="container-fluid">
         <span
           className="text-light"

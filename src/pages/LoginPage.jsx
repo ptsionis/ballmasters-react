@@ -1,13 +1,17 @@
 import React from "react";
 import LoginButton from "../components/LoginButton/LoginButton";
 
+import "./LoginPage.css";
+
 const LoginPage = () => {
   return (
-    <div className="page container-fluid d-flex flex-column justify-content-center align-items-center bg-light">
+    <main className="login-main">
       <h1>BallMasters</h1>
-      <h3 className="mb-5">The ultimate football knowledge quiz</h3>
+      <span className="mb-5">
+        Connect with friends and challenge in more than 1.000.000 questions
+      </span>
       <LoginButton />
-    </div>
+    </main>
   );
 };
 

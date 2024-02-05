@@ -1,0 +1,22 @@
+.frienditem-name {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.frienditem-name-span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.challenge-response-wrapper {
+  width: 130px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
