@@ -3,6 +3,7 @@ import { AppContext } from "../../App";
 
 import AvailabilityIcon from "../AvailabilityIcon/AvailabilityIcon";
 import ChallengeButton from "../ChallengeButton/ChallengeButton";
+import ChallengeCancelButton from "../ChallengeCancelButton/ChallengeCancelButton";
 import ChallengeAcceptButton from "../ChallengeAcceptButton/ChallengeAcceptButton";
 import ChallengeDeclineButton from "../ChallengeDeclineButton/ChallengeDeclineButton";
 import { Availabilities } from "../../models/enums/availabilityEnum";
@@ -13,6 +14,7 @@ const FriendItem = ({ friend }) => {
   const { socket } = useContext(AppContext);
   const [availability, setAvailability] = useState(Availabilities.OFFLINE);
   const [challengedMe, setChallengedMe] = useState(false);
+  const [cancelButton, setCancelButton] = useState(false);
 
   socket.on("friendStatus", ({ userId, status }) => {
     if (userId === friend.id) {
@@ -26,21 +28,42 @@ const FriendItem = ({ friend }) => {
     }
   });
 
-  socket.on("challenge_rejected", (challengerUserId) => {
+  socket.on("challenge_sent", (targetUserId) => {
+    if (friend.id === targetUserId) {
+      setAvailability(Availabilities.PENDING);
+      setCancelButton(true);
+    }
+  });
+
+  socket.on("challenge_cancelled_ch", (targetUserId) => {
+    if (friend.id === targetUserId) {
+      setCancelButton(false);
+      setAvailability(Availabilities.ONLINE);
+    }
+  });
+
+  socket.on("challenge_cancelled_ta", (challengerUserId) => {
     if (friend.id === challengerUserId) {
       setChallengedMe(false);
       setAvailability(Availabilities.ONLINE);
     }
   });
 
-  socket.on("challenge_sent", (targetUserId) => {
+  socket.on("rejected_successfully", (challengerUserId) => {
+    if (friend.id === challengerUserId) {
+      setChallengedMe(false);
+      setAvailability(Availabilities.ONLINE);
+    }
+  });
+
+  socket.on("challenge_rejected", (targetUserId) => {
     if (friend.id === targetUserId) {
-      setAvailability(Availabilities.PENDING);
+      setCancelButton(false);
     }
   });
 
   return (
-    <>
+    <div className={`frienditem ${challengedMe ? "challenged-me" : ""}`}>
       <div className="frienditem-name">
         <AvailabilityIcon availability={availability} />
         <span className="frienditem-name-span">{friend.username}</span>
@@ -50,10 +73,12 @@ const FriendItem = ({ friend }) => {
           <ChallengeAcceptButton />
           <ChallengeDeclineButton friendId={friend.id} />
         </div>
+      ) : cancelButton ? (
+        <ChallengeCancelButton friendId={friend.id} />
       ) : (
         <ChallengeButton friendId={friend.id} availability={availability} />
       )}
-    </>
+    </div>
   );
 };
 

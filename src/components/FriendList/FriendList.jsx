@@ -18,7 +18,7 @@ const FriendList = () => {
       <ul className="friendlist-ul">
         {user.friends &&
           user.friends.map((friend, index) => (
-            <li className="friendlist-li my-2 p-2 rounded bg-light" key={index}>
+            <li key={index}>
               <FriendItem friend={friend} />
             </li>
           ))}
