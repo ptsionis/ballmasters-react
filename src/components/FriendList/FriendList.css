@@ -11,7 +11,3 @@
   margin-top: 15px;
   overflow-y: auto;
 }
-
-.friendlist-ul::-webkit-scrollbar {
-  display: none;
-}

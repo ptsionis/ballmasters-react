@@ -1,12 +1,14 @@
 import React from "react";
 import { logout } from "../../services/authServices";
 
+import "./LogoutButton.css";
+
 const LogoutButton = () => {
   const userLogout = () => {
     logout();
   };
   return (
-    <button className="btn w-100 btn-danger" onClick={userLogout}>
+    <button className="logout-btn" onClick={userLogout}>
       Logout
     </button>
   );

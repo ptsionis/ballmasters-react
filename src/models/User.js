@@ -4,6 +4,7 @@ export class User {
     username,
     role,
     email,
+    profilePicUrl,
     score,
     friends,
     gamesPlayed,
@@ -13,6 +14,7 @@ export class User {
     this.id = id;
     this.username = username;
     this.email = email;
+    this.profilePicUrl = profilePicUrl;
     this.role = role;
     this.score = score;
     this.friends = friends;
@@ -23,19 +25,19 @@ export class User {
 
   getRank() {
     if (this.score < 500) {
-      return "Amateur";
+      return "amateur";
     } else if (this.score < 1000) {
-      return "Beginner";
+      return "beginner";
     } else if (this.score < 1500) {
-      return "Pro";
+      return "pro";
     } else if (this.score < 2000) {
-      return "Master";
+      return "master";
     } else if (this.score < 2500) {
-      return "Virtuoso";
+      return "virtuoso";
     } else if (this.score < 3000) {
-      return "Grandmaster";
+      return "grandmaster";
     } else {
-      return "Legend";
+      return "legend";
     }
   }
 

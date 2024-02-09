@@ -1,14 +1,13 @@
 import React, { useEffect, useContext, useState } from "react";
-import Navbar from "../components/Nav/Navbar";
 
+import SidePanel from "../components/SidePanel/SidePanel";
 import Welcome from "../components/Welcome/Welcome";
+import ModalError from "../components/ModalError/ModalError";
 import FriendList from "../components/FriendList/FriendList";
-import Modal from "../components/Modal/Modal";
 import { AppContext } from "../App";
 import { homeInitialization } from "../utils/pagesUtils";
 
 import "./HomePage.css";
-import ModalError from "../components/ModalError/ModalError";
 
 const HomePage = () => {
   const { socket, user, setUser } = useContext(AppContext);
@@ -34,7 +33,7 @@ const HomePage = () => {
     <main className="home-main">
       {user && (
         <>
-          <div className="home-section">Profile Highlights</div>
+          <SidePanel />
           <Welcome />
           <FriendList />
           {showErrorModal ? (

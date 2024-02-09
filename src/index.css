@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   line-height: 1.75;
   background-color: #0f0f0f;
   color: white;
@@ -20,19 +20,6 @@ main {
 
 button {
   transition: all 0.2s ease;
-}
-
-.container-fluid {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.navbar {
-  margin: 15px 5px 0px 5px;
-  border-radius: 10px;
 }
 
 @media screen and (max-width: 1024px) {

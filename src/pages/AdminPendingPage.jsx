@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import Navbar from "../components/Nav/Navbar";
 import AdminPendingQuestion from "../components/AdminPendingQuestion/AdminPendingQuestion";
 
 const AdminPendingPage = () => {
@@ -30,7 +29,6 @@ const AdminPendingPage = () => {
 
   return (
     <div className="page container-fluid">
-      <Navbar />
       <main className="container flex-grow-1 d-flex flex-column justify-content-center">
         <h2 className="text-center">Admin Pending Questions Page</h2>
         {pendingQuestions.map((item) => {

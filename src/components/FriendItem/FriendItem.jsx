@@ -64,9 +64,20 @@ const FriendItem = ({ friend }) => {
 
   return (
     <div className={`frienditem ${challengedMe ? "challenged-me" : ""}`}>
-      <div className="frienditem-name">
+      <div className="frienditem-name-wrapper">
         <AvailabilityIcon availability={availability} />
-        <span className="frienditem-name-span">{friend.username}</span>
+        <div className="frienditem-name">
+          <img
+            className="friend-img"
+            src={
+              friend.profilePicUrl
+                ? friend.profilePicUrl
+                : "/images/noPicture.webp"
+            }
+            alt="Avatar"
+          />
+          <span className="frienditem-name-span">{friend.username}</span>
+        </div>
       </div>
       {challengedMe ? (
         <div className="challenge-response-wrapper">

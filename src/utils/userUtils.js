@@ -9,6 +9,7 @@ export const createUser = async (setUser) => {
       data.profile.username,
       data.profile.role,
       data.profile.email,
+      data.profile.profilePicUrl,
       data.profile.score,
       data.friends,
       data.profile.gamesPlayed,

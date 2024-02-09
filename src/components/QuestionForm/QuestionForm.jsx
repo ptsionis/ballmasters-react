@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
 import { PendingQuestion } from "../../models/PendingQuestion";
-import Modal from "../Modal/Modal";
 import { Categories } from "../../models/enums/categoriesEnum";
 import { submitPendingData } from "../../services/pendingQuestionService";
 import { capitalizeFirstLetter } from "../../utils/otherUtils";
+import { AppContext } from "../../App";
+
+import "./QuestionForm.css";
 
 const QuestionForm = () => {
-  const [successModal, setSuccessModal] = useState(false);
+  const { setCurrentPage } = useContext(AppContext);
 
+  const cancelAndReturn = () => {
+    setCurrentPage("/");
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -34,39 +39,34 @@ const QuestionForm = () => {
 
     try {
       const res = await submitPendingData(postData);
-      const modal = new bootstrap.Modal(
-        document.getElementById("staticBackdrop")
-      );
-      modal.toggle();
-      setSuccessModal(res.success);
-    } catch (error) {
-      setSuccessModal(res.success);
-    }
+    } catch (error) {}
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="d-flex flex-column">
-        <div className="mb-3">
+      <form onSubmit={handleSubmit} className="submit-form">
+        <div className="submit-form-section">
           <label htmlFor="question">
-            Question <span className="text-danger">*</span>
+            Question <span className="submit-form-required">*</span>
           </label>
           <input
-            className="form-control"
+            className="submit-form-control"
             type="text"
             name="question"
             maxLength={500}
             required
           />
-          <div className="form-text">Maximum length 500 characters.</div>
+          <div className="submit-form-note">
+            (Maximum length 500 characters)
+          </div>
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="category">
-            Category <span className="text-danger">*</span>
+            Category <span className="submit-form-required">*</span>
           </label>
-          <div className="d-flex justify-content-center justify-content-sm-start flex-column flex-sm-row">
+          <div className="submit-form-radio-group">
             {Object.values(Categories).map((category) => (
-              <div key={category}>
+              <div className="submit-form-radio-option" key={category}>
                 <input
                   type="radio"
                   name="category"
@@ -74,20 +74,20 @@ const QuestionForm = () => {
                   id={category}
                   required
                 />
-                <label className="ps-1 pe-3" htmlFor={category}>
+                <label className="submit-form-radio-label" htmlFor={category}>
                   {capitalizeFirstLetter(category)}
                 </label>
               </div>
             ))}
           </div>
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="level">
-            Level <span className="text-danger">*</span>
+            Level <span className="submit-form-required">*</span>
           </label>
-          <div className="d-flex">
+          <div className="submit-form-radio-group">
             {[1, 2, 3].map((level) => (
-              <React.Fragment key={level}>
+              <div className="submit-form-radio-option" key={level}>
                 <input
                   type="radio"
                   name="level"
@@ -95,68 +95,71 @@ const QuestionForm = () => {
                   id={`level-${level}`}
                   required
                 />
-                <label className="ps-1 pe-3" htmlFor={`level-${level}`}>
+                <label
+                  className="submit-form-radio-label"
+                  htmlFor={`level-${level}`}
+                >
                   {level}
                 </label>
-              </React.Fragment>
+              </div>
             ))}
           </div>
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="answer1">
-            Answer 1 <span className="text-danger">*</span>
+            Answer 1 <span className="submit-form-required">*</span>
           </label>
           <input
-            className="form-control"
+            className="submit-form-control"
             type="text"
             name="answer1"
             maxLength={100}
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="answer2">
-            Answer 2 <span className="text-danger">*</span>
+            Answer 2 <span className="submit-form-required">*</span>
           </label>
           <input
-            className="form-control"
+            className="submit-form-control"
             type="text"
             name="answer2"
             maxLength={100}
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="answer3">
-            Answer 3 <span className="text-danger">*</span>
+            Answer 3 <span className="submit-form-required">*</span>
           </label>
           <input
-            className="form-control"
+            className="submit-form-control"
             type="text"
             name="answer3"
             maxLength={100}
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="answer4">
-            Answer 4 <span className="text-danger">*</span>
+            Answer 4 <span className="submit-form-required">*</span>
           </label>
           <input
-            className="form-control"
+            className="submit-form-control"
             type="text"
             name="answer4"
             maxLength={100}
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="correctId">
-            Correct Answer <span className="text-danger">*</span>
+            Correct Answer <span className="submit-form-required">*</span>
           </label>
-          <div className="d-flex">
+          <div className="submit-form-radio-group">
             {[1, 2, 3, 4].map((correctId) => (
-              <React.Fragment key={correctId}>
+              <div className="submit-form-radio-option" key={correctId}>
                 <input
                   type="radio"
                   name={`correctId`}
@@ -165,29 +168,33 @@ const QuestionForm = () => {
                   required
                 />
                 <label
-                  className="ps-1 pe-3"
+                  className="submit-form-radio-label"
                   htmlFor={`correctId-ci${correctId}`}
                 >
                   {correctId}
                 </label>
-              </React.Fragment>
+              </div>
             ))}
           </div>
         </div>
-        <div className="mb-3">
+        <div className="submit-form-section">
           <label htmlFor="source">Source URL</label>
           <input
-            className="form-control"
+            className="submit-form-control"
             type="text"
             name="source"
             maxLength={2048}
           />
         </div>
-        <button className="btn btn-primary my-4" type="submit">
-          Submit
-        </button>
+        <div className="submit-form-buttons-wrapper">
+          <button className="submit-form-cancel" onClick={cancelAndReturn}>
+            Cancel
+          </button>
+          <button className="submit-form-submit" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
-      <Modal success={successModal} />
     </>
   );
 };
