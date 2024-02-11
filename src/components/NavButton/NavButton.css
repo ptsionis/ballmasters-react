@@ -10,7 +10,15 @@
   cursor: pointer;
 }
 
+.admin-nav-button {
+  background-color: rgb(90, 74, 0);
+}
+
 .nav-button:hover {
   background-color: #004e72;
   transform: scale(1.0375);
+}
+
+.admin-nav-button:hover {
+  background-color: rgb(66, 54, 1);
 }

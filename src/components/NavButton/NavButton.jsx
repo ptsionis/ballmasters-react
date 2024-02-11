@@ -10,7 +10,12 @@ const NavButton = ({ text, page }) => {
   };
 
   return (
-    <button className="nav-button" onClick={changePage}>
+    <button
+      className={`${
+        page.includes("admin") ? "admin-nav-button" : ""
+      } nav-button`}
+      onClick={changePage}
+    >
       {text}
     </button>
   );
