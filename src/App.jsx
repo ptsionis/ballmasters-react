@@ -7,6 +7,7 @@ import UserPage from "./pages/UserPage";
 import AdminPendingPage from "./pages/AdminPendingPage";
 import SubmitPendingPage from "./pages/SubmitPendingPage";
 import AdminQuestionsPage from "./pages/AdminQuestionsPage";
+import GamePage from "./pages/GamePage";
 import { checkIfAuthenticated } from "./utils/authUtils";
 import socket from "./socketService";
 
@@ -19,6 +20,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const renderPage = () => {
+    if (currentPage !== "/" && currentPage !== "/game") {
+      socket.emit("not_available");
+    }
     switch (currentPage) {
       case "/":
         return <HomePage />;
@@ -30,6 +34,8 @@ const App = () => {
         return <AdminQuestionsPage />;
       case "submit-pending":
         return <SubmitPendingPage />;
+      case "game":
+        return <GamePage />;
       default:
         return null;
     }

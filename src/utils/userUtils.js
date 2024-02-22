@@ -21,3 +21,8 @@ export const createUser = async (setUser) => {
     console.error("Error creating user:", error);
   }
 };
+
+export const getFirstName = (name) => {
+  const firstName = name.split(" ");
+  return firstName[0];
+};

@@ -1,0 +1,30 @@
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-text {
+  color: rgb(165, 165, 165);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.footer-link {
+  color: rgb(165, 165, 165);
+}
+
+.footer-link:hover {
+  color: rgb(139, 8, 8);
+  transform: scale(1.0375);
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    display: none;
+  }
+}

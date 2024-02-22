@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { CgClose } from "react-icons/cg";
 
 import NavButton from "../NavButton/NavButton";
 import LogoutButton from "../LogoutButton/LogoutButton";
@@ -17,7 +18,7 @@ const Nav = ({ setToggleNav }) => {
   return (
     <nav className="nav">
       <button className="nav-close" onClick={toggleNav}>
-        ❌
+        <CgClose color="red" size={"20px"} />
       </button>
       <NavButton text={"Preferences"} page={"profile"} />
       <NavButton text={"Submit Question"} page={"submit-pending"} />

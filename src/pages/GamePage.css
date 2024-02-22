@@ -1,18 +1,13 @@
-.submit-main {
+.game-main {
   position: relative;
   display: flex;
   flex-grow: 1;
 }
 
-.submit-wrapper {
+.game-wrapper {
   width: 100%;
   margin: 0px 5px 0px 5px;
   padding: 35px 25px 35px 25px;
   border-radius: 10px;
-  /* background-color: #161616; */
-  overflow-y: scroll;
-}
-
-.submit-title {
-  text-align: center;
+  background-color: #161616;
 }

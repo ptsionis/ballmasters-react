@@ -13,8 +13,8 @@
   background-color: #1877f2;
 }
 
-.login-button-img {
-  margin-right: 7px;
+.login-button-text {
+  margin-left: 5px;
 }
 
 .login-button:hover {

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { FaGear } from "react-icons/fa6";
 
 import { AppContext } from "../../App";
 import "./SidePanel.css";
@@ -16,7 +17,11 @@ const SidePanel = () => {
           src={
             user.profilePicUrl ? user.profilePicUrl : "/images/noPicture.webp"
           }
-          alt="Avatar"
+          alt="Pic"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/images/noPicture.webp";
+          }}
         />
       </button>
       <div className="user-info">
@@ -33,7 +38,7 @@ const SidePanel = () => {
             setToggleNav(true);
           }}
         >
-          🔨
+          <FaGear color="white" size={"20px"} />
         </button>
       )}
     </div>

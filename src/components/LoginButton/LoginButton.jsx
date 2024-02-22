@@ -1,4 +1,5 @@
 import React from "react";
+import { FaFacebook } from "react-icons/fa6";
 import { login } from "../../services/authServices";
 
 import "./LoginButton.css";
@@ -10,12 +11,8 @@ const LoginButton = () => {
 
   return (
     <button className="login-button" onClick={goToLogin}>
-      <img
-        className="login-button-img"
-        src="/images/svg/facebook.svg"
-        alt="Facebook"
-      />
-      Login
+      <FaFacebook size={"28px"} />
+      <span className="login-button-text">Login</span>
     </button>
   );
 };

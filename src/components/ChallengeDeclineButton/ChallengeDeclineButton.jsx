@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { ImBlocked } from "react-icons/im";
 import { AppContext } from "../../App";
 
 import "./ChallengeDeclineButton.css";
@@ -12,7 +13,7 @@ const ChallengeDeclineButton = ({ friendId }) => {
 
   return (
     <button className="challenge-decline-button" onClick={declineChallenge}>
-      ⛔
+      <ImBlocked />
     </button>
   );
 };

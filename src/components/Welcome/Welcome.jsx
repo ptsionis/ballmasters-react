@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
+import QuickPlayButton from "../QuickPlayButton/QuickPlayButton";
+import Footer from "../Footer/Footer";
 
 import { AppContext } from "../../App";
+import { getFirstName } from "../../utils/userUtils";
 import "./Welcome.css";
 
 const Welcome = () => {
@@ -8,8 +11,9 @@ const Welcome = () => {
 
   return (
     <section className="home-section welcome">
-      <h1>BallMasters</h1>
-      <div>{user ? <h3>Welcome {user.username}</h3> : null}</div>
+      {user ? <h3>Welcome, {getFirstName(user.username)}!</h3> : null}
+      <QuickPlayButton />
+      <Footer />
     </section>
   );
 };

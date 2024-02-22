@@ -18,6 +18,10 @@ const FriendItem = ({ friend }) => {
 
   socket.on("friendStatus", ({ userId, status }) => {
     if (userId === friend.id) {
+      if (status === Availabilities.OFFLINE) {
+        setChallengedMe(false);
+        setCancelButton(false);
+      }
       setAvailability(status);
     }
   });
@@ -74,7 +78,11 @@ const FriendItem = ({ friend }) => {
                 ? friend.profilePicUrl
                 : "/images/noPicture.webp"
             }
-            alt="Avatar"
+            alt="Pic"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/images/noPicture.webp";
+            }}
           />
           <span className="frienditem-name-span">{friend.username}</span>
         </div>
