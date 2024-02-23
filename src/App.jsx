@@ -22,6 +22,8 @@ const App = () => {
   const renderPage = () => {
     if (currentPage !== "/" && currentPage !== "/game") {
       socket.emit("not_available");
+    } else if (currentPage === "/") {
+      socket.emit("available");
     }
     switch (currentPage) {
       case "/":
