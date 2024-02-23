@@ -27,7 +27,7 @@
 }
 
 .challenge-button-blue {
-  background-color: #161616;
+  background-color: #1877f2;
 }
 
 .challenge-button-gray {
@@ -43,6 +43,6 @@
 }
 
 .challenge-button-blue:hover {
-  background-color: #0f0f0f;
+  background-color: #1562c7;
   transform: scale(1.0375);
 }

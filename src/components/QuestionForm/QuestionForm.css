@@ -64,11 +64,11 @@
   border-radius: 10px;
   cursor: pointer;
   color: white;
-  background-color: rgb(63, 63, 63);
+  background-color: #1877f2;
 }
 
 .submit-form-submit:hover {
-  background-color: #161616;
+  background-color: #1562c7;
   transform: scale(1.0375);
 }
 
