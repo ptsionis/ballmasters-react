@@ -21,24 +21,22 @@ export const fetchAllPendingData = async () => {
 };
 
 export const submitPendingData = async (pendingData) => {
-    try {
-      const isAuthenticated = await checkIfAuthenticated();
-      if (isAuthenticated) {
-        console.log(pendingData);
-        const res = await axios.post(
-            "http://localhost:8000/pending-question/submit-pending",
-            pendingData,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          );
-        return res.data;
-      }
-    } catch (error) {
-      console.error("Failed to delete question data:", error);
-      return null;
+  try {
+    const isAuthenticated = await checkIfAuthenticated();
+    if (isAuthenticated) {
+      const res = await axios.post(
+        "http://localhost:8000/pending-question/submit-pending",
+        pendingData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      return res.data.success;
     }
-  };
+  } catch (error) {
+    return false;
+  }
+};

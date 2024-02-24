@@ -1,4 +1,4 @@
-.modal-error-wrapper {
+.modal-form-wrapper {
   height: 100dvh;
   width: 100dvw;
   position: absolute;
@@ -11,7 +11,7 @@
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-.modal-error {
+.modal-form {
   width: 350px;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,13 @@
   text-align: center;
 }
 
-.modal-error-close {
+.modal-form-text {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modal-form-close {
   margin-top: 20px;
   padding: 15px 20px 15px 20px;
   border: none;
@@ -32,6 +38,6 @@
   cursor: pointer;
 }
 
-.modal-error-close:hover {
+.modal-form-close:hover {
   background-color: #0a0a0a;
 }

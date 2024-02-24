@@ -89,7 +89,7 @@ const FriendItem = ({ friend }) => {
       </div>
       {challengedMe ? (
         <div className="challenge-response-wrapper">
-          <ChallengeAcceptButton />
+          <ChallengeAcceptButton friendId={friend.id} />
           <ChallengeDeclineButton friendId={friend.id} />
         </div>
       ) : cancelButton ? (

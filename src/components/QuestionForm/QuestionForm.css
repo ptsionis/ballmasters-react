@@ -69,7 +69,6 @@
 
 .submit-form-submit:hover {
   background-color: #1562c7;
-  transform: scale(1.0375);
 }
 
 .submit-form-cancel {
@@ -90,7 +89,6 @@
 
 .submit-form-cancel:hover {
   background-color: rgb(94, 6, 6);
-  transform: scale(1.0375);
 }
 
 @media screen and (max-width: 1024px) {

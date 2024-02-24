@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { PendingQuestion } from "../../models/PendingQuestion";
 import { Categories } from "../../models/enums/categoriesEnum";
@@ -7,18 +7,20 @@ import { capitalizeFirstLetter } from "../../utils/otherUtils";
 import { AppContext } from "../../App";
 
 import "./QuestionForm.css";
+import ModalForm from "../ModalForm/ModalForm";
 
 const QuestionForm = () => {
   const { setCurrentPage } = useContext(AppContext);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [showFormModal, setShowFormModal] = useState(false);
 
   const cancelAndReturn = () => {
     setCurrentPage("/");
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
-
     const pendingQuestion = new PendingQuestion(
       null,
       formData.get("question"),
@@ -39,7 +41,12 @@ const QuestionForm = () => {
 
     try {
       const res = await submitPendingData(postData);
-    } catch (error) {}
+      setSubmitSuccess(res);
+      setShowFormModal(true);
+    } catch (error) {
+      setSubmitSuccess(false);
+      setShowFormModal(true);
+    }
   };
 
   return (
@@ -195,6 +202,12 @@ const QuestionForm = () => {
           </button>
         </div>
       </form>
+      {showFormModal ? (
+        <ModalForm
+          success={submitSuccess}
+          setShowFormModal={setShowFormModal}
+        />
+      ) : null}
     </>
   );
 };

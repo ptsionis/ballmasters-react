@@ -7,9 +7,6 @@ const LoginPage = () => {
   return (
     <main className="login-main">
       <h1>BallMasters</h1>
-      <span className="mb-5">
-        Connect with friends and challenge in more than 1.000.000 questions
-      </span>
       <LoginButton />
     </main>
   );
