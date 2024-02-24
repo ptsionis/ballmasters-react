@@ -23,10 +23,13 @@ const Nav = ({ setToggleNav }) => {
       <NavButton text={"Preferences"} page={"profile"} />
       <NavButton text={"Submit Question"} page={"submit-pending"} />
       {user.role !== Roles.USER ? (
-        <NavButton
-          text={"Pending Questions"}
-          page={"admin-pending-questions"}
-        />
+        <>
+          <NavButton
+            text={"Pending Questions"}
+            page={"admin-pending-questions"}
+          />
+          <NavButton text={"All Questions"} page={"admin-questions"} />
+        </>
       ) : null}
       <LogoutButton />
     </nav>

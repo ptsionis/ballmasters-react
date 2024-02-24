@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
+import { FaCheck } from "react-icons/fa6";
 import { CgClose } from "react-icons/cg";
 
 import "./ModalForm.css";
@@ -20,11 +21,19 @@ const ModalForm = ({ success, setShowFormModal }) => {
   return (
     <div className="modal-form-wrapper">
       <div className="modal-form">
-        <span className="modal-form-text">
+        <span
+          className={`modal-form-text ${
+            success ? null : "modal-form-text-fail"
+          }`}
+        >
           {success ? successMsg : failMsg}
         </span>
         <button className="modal-form-close" onClick={closeModal}>
-          <CgClose color="red" size={"20px"} />
+          {success ? (
+            <FaCheck color="green" size={"20px"} />
+          ) : (
+            <CgClose color="red" size={"20px"} />
+          )}
         </button>
       </div>
     </div>

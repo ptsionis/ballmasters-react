@@ -1,26 +1,18 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import AdminPendingQuestion from "../components/AdminPendingQuestion/AdminPendingQuestion";
 
+import { fetchAllPendingData } from "../services/pendingQuestionService";
+import "./AdminPendingPage.css";
+
 const AdminPendingPage = () => {
   const [pendingQuestions, setPendingQuestions] = useState([]);
 
-  const loadPendingQuestions = () => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:8000/pending-question/all-pending",
-          {
-            withCredentials: true,
-          }
-        );
-        setPendingQuestions(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+  const loadPendingQuestions = async () => {
+    const fetchedQuestions = await fetchAllPendingData();
+    if (fetchedQuestions) {
+      setPendingQuestions(fetchedQuestions);
+    }
   };
 
   useEffect(() => {
@@ -28,9 +20,9 @@ const AdminPendingPage = () => {
   }, []);
 
   return (
-    <div className="page container-fluid">
-      <main className="container flex-grow-1 d-flex flex-column justify-content-center">
-        <h2 className="text-center">Admin Pending Questions Page</h2>
+    <main className="admin-pending-main">
+      <div className="admin-pending-wrapper">
+        <h2 className="admin-pending-title">Pending Questions</h2>
         {pendingQuestions.map((item) => {
           return (
             <AdminPendingQuestion
@@ -50,8 +42,8 @@ const AdminPendingPage = () => {
             />
           );
         })}
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };
 

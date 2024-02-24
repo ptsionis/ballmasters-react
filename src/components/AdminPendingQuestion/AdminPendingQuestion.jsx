@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { Categories } from "../../models/enums/categoriesEnum";
+import {
+  acceptPendingQuestion,
+  deletePendingQuestion,
+  updatePendingQuestion,
+} from "../../services/pendingQuestionService";
 import { capitalizeFirstLetter } from "../../utils/otherUtils";
+
+import "./AdminPendingQuestion.css";
 
 const AdminPendingQuestion = ({
   id,
@@ -28,34 +35,15 @@ const AdminPendingQuestion = ({
   const [editedCorrectId, setEditedCorrectId] = useState(correctId);
 
   const acceptPending = async () => {
-    const res = await axios.post(
-      "http://localhost:8000/pending-question/accept-pending",
-      {
-        id: id,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      }
-    );
-    if (res.data.success) {
+    const res = await acceptPendingQuestion(id);
+    if (res) {
       loadPendingQuestions();
     }
   };
 
   const deletePending = async () => {
-    const res = await axios.delete(
-      "http://localhost:8000/pending-question/delete-pending",
-      {
-        withCredentials: true,
-        data: {
-          id: id,
-        },
-      }
-    );
-    if (res.data.success) {
+    const res = await deletePendingQuestion(id);
+    if (res) {
       loadPendingQuestions();
     }
   };
@@ -73,39 +61,36 @@ const AdminPendingQuestion = ({
       correctId: editedCorrectId,
     };
 
-    const res = await axios.put(
-      "http://localhost:8000/pending-question/update-pending",
-      updatedData,
-      { withCredentials: true }
-    );
-    if (res.data.success) {
+    const res = await updatePendingQuestion(updatedData);
+    if (res) {
       loadPendingQuestions();
     }
   };
 
   return (
-    <div className="d-flex flex-column bg-light rounded p-4 my-4">
-      <p className="text-center border-bottom pb-3">
-        Pending ID: <span className="fw-bold">{id}</span>
+    <div className="admin-pending-item">
+      <p className="pending-item-id">
+        No. <span>{id}</span>
       </p>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label>
-          Question <span className="text-danger">*</span>
-          <input
-            className="form-control"
-            type="text"
-            value={editedQuestion}
-            onChange={(e) => setEditedQuestion(e.target.value)}
-          />
+          Question <span className="pending-item-required">*</span>
         </label>
+        <input
+          className="pending-item-control"
+          type="text"
+          value={editedQuestion}
+          onChange={(e) => setEditedQuestion(e.target.value)}
+        />
+        <div className="pending-item-note">(Maximum length 500 characters)</div>
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label htmlFor="category">
-          Category <span className="text-danger">*</span>
+          Category <span className="pending-item-required">*</span>
         </label>
-        <div className="d-flex justify-content-center justify-content-sm-start flex-column flex-sm-row">
+        <div className="pending-item-radio-group">
           {Object.values(Categories).map((category) => (
-            <div key={category}>
+            <div className="pending-item-radio-option" key={category}>
               <input
                 type="radio"
                 name={`category-q${id}`}
@@ -118,7 +103,7 @@ const AdminPendingQuestion = ({
                 required
               />
               <label
-                className="ps-1 pe-3"
+                className="pending-item-radio-label"
                 htmlFor={`category${category}-q${id}`}
               >
                 {capitalizeFirstLetter(category)}
@@ -127,14 +112,14 @@ const AdminPendingQuestion = ({
           ))}
         </div>
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label htmlFor="level">
-          Level <span className="text-danger">*</span>
+          Level <span className="pending-item-required">*</span>
         </label>
-        <div className="d-flex">
+        <div className="pending-item-radio-group">
           {[1, 2, 3].map((level) => {
             return (
-              <React.Fragment key={level}>
+              <div className="pending-item-radio-option" key={level}>
                 <input
                   type="radio"
                   name={`level-q${id}`}
@@ -146,65 +131,68 @@ const AdminPendingQuestion = ({
                   defaultChecked={level === editedLevel}
                   required
                 />
-                <label className="ps-1 pe-3" htmlFor={`level${level}-q${id}`}>
+                <label
+                  className="pending-item-radio-label"
+                  htmlFor={`level${level}-q${id}`}
+                >
                   {level}
                 </label>
-              </React.Fragment>
+              </div>
             );
           })}
         </div>
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label>
-          Answer 1 <span className="text-danger">*</span>
-          <input
-            className="form-control"
-            type="text"
-            value={editedAnswer1}
-            onChange={(e) => setEditedAnswer1(e.target.value)}
-          />
+          Answer 1 <span className="pending-item-required">*</span>
         </label>
+        <input
+          className="pending-item-control"
+          type="text"
+          value={editedAnswer1}
+          onChange={(e) => setEditedAnswer1(e.target.value)}
+        />
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label>
-          Answer 2 <span className="text-danger">*</span>
-          <input
-            className="form-control"
-            type="text"
-            value={editedAnswer2}
-            onChange={(e) => setEditedAnswer2(e.target.value)}
-          />
+          Answer 2 <span className="pending-item-required">*</span>
         </label>
+        <input
+          className="pending-item-control"
+          type="text"
+          value={editedAnswer2}
+          onChange={(e) => setEditedAnswer2(e.target.value)}
+        />
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label>
-          Answer 3 <span className="text-danger">*</span>
-          <input
-            className="form-control"
-            type="text"
-            value={editedAnswer3}
-            onChange={(e) => setEditedAnswer3(e.target.value)}
-          />
+          Answer 3 <span className="pending-item-required">*</span>
         </label>
+        <input
+          className="pending-item-control"
+          type="text"
+          value={editedAnswer3}
+          onChange={(e) => setEditedAnswer3(e.target.value)}
+        />
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label>
-          Answer 4 <span className="text-danger">*</span>
-          <input
-            className="form-control"
-            type="text"
-            value={editedAnswer4}
-            onChange={(e) => setEditedAnswer4(e.target.value)}
-          />
+          Answer 4 <span className="pending-item-required">*</span>
         </label>
+        <input
+          className="pending-item-control"
+          type="text"
+          value={editedAnswer4}
+          onChange={(e) => setEditedAnswer4(e.target.value)}
+        />
       </div>
-      <div className="mb-3">
+      <div className="pending-item-section">
         <label htmlFor="correctId">
-          Correct Answer <span className="text-danger">*</span>
+          Correct Answer <span className="pending-item-required">*</span>
         </label>
-        <div className="d-flex">
+        <div className="pending-item-radio-group">
           {[1, 2, 3, 4].map((correctId) => (
-            <React.Fragment key={correctId}>
+            <div className="pending-item-radio-option" key={correctId}>
               <input
                 type="radio"
                 name={`correctId-q${id}`}
@@ -217,12 +205,12 @@ const AdminPendingQuestion = ({
                 required
               />
               <label
-                className="ps-1 pe-3"
+                className="pending-item-radio-label"
                 htmlFor={`correctId${correctId}-q${id}`}
               >
                 {correctId}
               </label>
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </div>
@@ -232,19 +220,26 @@ const AdminPendingQuestion = ({
           <a href={`${source}`} target="_blank">
             {source}
           </a>
-        ) : (
-          <span className="text-muted">-</span>
-        )}
+        ) : null}
       </p>
       <p>User ID: {userId}</p>
-      <div className="d-flex justify-content-center align-items-center">
-        <button className="btn btn-success mx-2" onClick={acceptPending}>
+      <div className="pending-item-button-wrapper">
+        <button
+          className="pending-item-button pending-item-button-accept"
+          onClick={acceptPending}
+        >
           Accept
         </button>
-        <button className="btn btn-secondary mx-2" onClick={saveChanges}>
-          Save Changes
+        <button
+          className="pending-item-button pending-item-button-modify"
+          onClick={saveChanges}
+        >
+          Modify
         </button>
-        <button className="btn btn-danger mx-2" onClick={deletePending}>
+        <button
+          className="pending-item-button pending-item-button-delete"
+          onClick={deletePending}
+        >
           Delete
         </button>
       </div>

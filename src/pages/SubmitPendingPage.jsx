@@ -8,7 +8,7 @@ const SubmitPendingPage = () => {
   return (
     <main className="submit-main">
       <div className="submit-wrapper">
-        <h2 className="submit-title">Submit Your Question</h2>
+        <h2 className="submit-title">Submit Question</h2>
         <QuestionForm />
       </div>
     </main>

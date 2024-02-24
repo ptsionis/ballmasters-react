@@ -40,3 +40,65 @@ export const submitPendingData = async (pendingData) => {
     return false;
   }
 };
+
+export const acceptPendingQuestion = async (id) => {
+  try {
+    const isAuthenticated = await checkIfAuthenticated();
+    if (isAuthenticated) {
+      const res = await axios.post(
+        "http://localhost:8000/pending-question/accept-pending",
+        {
+          id: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      return res.data.success;
+    }
+  } catch (error) {
+    console.error("Failed to fetch all questions data:", error);
+    return false;
+  }
+};
+
+export const deletePendingQuestion = async (id) => {
+  try {
+    const isAuthenticated = await checkIfAuthenticated();
+    if (isAuthenticated) {
+      const res = await axios.delete(
+        "http://localhost:8000/pending-question/delete-pending",
+        {
+          withCredentials: true,
+          data: {
+            id: id,
+          },
+        }
+      );
+      return res.data.success;
+    }
+  } catch (error) {
+    console.error("Failed to fetch all questions data:", error);
+    return false;
+  }
+};
+
+export const updatePendingQuestion = async (updatedData) => {
+  try {
+    const isAuthenticated = await checkIfAuthenticated();
+    if (isAuthenticated) {
+      const res = await axios.put(
+        "http://localhost:8000/pending-question/update-pending",
+        updatedData,
+        { withCredentials: true }
+      );
+      return res.data.success;
+    }
+  } catch (error) {
+    console.error("Failed to fetch all questions data:", error);
+    return false;
+  }
+};
