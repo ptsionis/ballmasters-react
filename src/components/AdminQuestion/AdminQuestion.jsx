@@ -1,35 +1,47 @@
 import React, { useState } from "react";
 
+import { Categories } from "../../models/enums/categoriesEnum";
+
+import { capitalizeFirstLetter } from "../../utils/otherUtils";
+import "./AdminQuestion.css";
+
 import {
   updateQuestionData,
   deleteQuestionData,
 } from "../../services/questionService";
 import { Question } from "../../models/Question";
 
-const AdminQuestion = (currentQuestion) => {
-  const [editedQuestion, setEditedQuestion] = useState(
-    currentQuestion.question
-  );
-  const [editedCategory, setEditedCategory] = useState(
-    currentQuestion.category
-  );
-  const [editedLevel, setEditedLevel] = useState(currentQuestion.level);
-  const [editedAnswer1, setEditedAnswer1] = useState(currentQuestion.answer1);
-  const [editedAnswer2, setEditedAnswer2] = useState(currentQuestion.answer2);
-  const [editedAnswer3, setEditedAnswer3] = useState(currentQuestion.answer3);
-  const [editedAnswer4, setEditedAnswer4] = useState(currentQuestion.answer4);
-  const [editedCorrectId, setEditedCorrectId] = useState(
-    currentQuestion.correctId
-  );
+const AdminQuestion = ({
+  id,
+  question,
+  category,
+  level,
+  answer1,
+  answer2,
+  answer3,
+  answer4,
+  correctId,
+  loadQuestions,
+}) => {
+  const [editedQuestion, setEditedQuestion] = useState(question);
+  const [editedCategory, setEditedCategory] = useState(category);
+  const [editedLevel, setEditedLevel] = useState(level);
+  const [editedAnswer1, setEditedAnswer1] = useState(answer1);
+  const [editedAnswer2, setEditedAnswer2] = useState(answer2);
+  const [editedAnswer3, setEditedAnswer3] = useState(answer3);
+  const [editedAnswer4, setEditedAnswer4] = useState(answer4);
+  const [editedCorrectId, setEditedCorrectId] = useState(correctId);
 
   const deleteQuestion = async () => {
-    const res = await deleteQuestionData(currentQuestion.id);
-    console.log(res);
+    const res = await deleteQuestionData(id);
+    if (res) {
+      loadQuestions();
+    }
   };
 
   const updateQuestion = async () => {
     const updatedQuestion = new Question(
-      currentQuestion.id,
+      id,
       editedQuestion,
       editedCategory,
       editedLevel,
@@ -45,81 +57,168 @@ const AdminQuestion = (currentQuestion) => {
   };
 
   return (
-    <div
-      style={{
-        border: "2px solid black",
-        padding: "15px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <p>Id: {currentQuestion.id}</p>
-      <label>
-        Question:
+    <div className="admin-question-item">
+      <p className="question-item-id">
+        No. <span>{id}</span>
+      </p>
+      <div className="question-item-section">
+        <label>
+          Question <span className="question-item-required">*</span>
+        </label>
         <input
+          className="question-item-control"
           type="text"
           value={editedQuestion}
           onChange={(e) => setEditedQuestion(e.target.value)}
         />
-      </label>
-      <label>
-        Category:
+        <div className="question-item-note">
+          (Maximum length 500 characters)
+        </div>
+      </div>
+      <div className="question-item-section">
+        <label htmlFor="category">
+          Category <span className="question-item-required">*</span>
+        </label>
+        <div className="question-item-radio-group">
+          {Object.values(Categories).map((category) => (
+            <div className="question-item-radio-option" key={category}>
+              <input
+                type="radio"
+                name={`category-q${id}`}
+                value={category}
+                id={`category${category}-q${id}`}
+                onChange={(e) => {
+                  setEditedCategory(e.target.value);
+                }}
+                defaultChecked={category === editedCategory}
+                required
+              />
+              <label
+                className="question-item-radio-label"
+                htmlFor={`category${category}-q${id}`}
+              >
+                {capitalizeFirstLetter(category)}
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="question-item-section">
+        <label htmlFor="level">
+          Level <span className="question-item-required">*</span>
+        </label>
+        <div className="question-item-radio-group">
+          {[1, 2, 3].map((level) => {
+            return (
+              <div className="question-item-radio-option" key={level}>
+                <input
+                  type="radio"
+                  name={`level-q${id}`}
+                  value={level}
+                  id={`level${level}-q${id}`}
+                  onChange={(e) => {
+                    setEditedLevel(e.target.value);
+                  }}
+                  defaultChecked={level === editedLevel}
+                  required
+                />
+                <label
+                  className="question-item-radio-label"
+                  htmlFor={`level${level}-q${id}`}
+                >
+                  {level}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="question-item-section">
+        <label>
+          Answer 1 <span className="question-item-required">*</span>
+        </label>
         <input
-          type="text"
-          value={editedCategory}
-          onChange={(e) => setEditedCategory(e.target.value)}
-        />
-      </label>
-      <label>
-        Level:
-        <input
-          type="text"
-          value={editedLevel}
-          onChange={(e) => setEditedLevel(e.target.value)}
-        />
-      </label>
-      <label>
-        Answer 1:
-        <input
+          className="question-item-control"
           type="text"
           value={editedAnswer1}
           onChange={(e) => setEditedAnswer1(e.target.value)}
         />
-      </label>
-      <label>
-        Answer 2:
+      </div>
+      <div className="question-item-section">
+        <label>
+          Answer 2 <span className="question-item-required">*</span>
+        </label>
         <input
+          className="question-item-control"
           type="text"
           value={editedAnswer2}
           onChange={(e) => setEditedAnswer2(e.target.value)}
         />
-      </label>
-      <label>
-        Answer 3:
+      </div>
+      <div className="question-item-section">
+        <label>
+          Answer 3 <span className="question-item-required">*</span>
+        </label>
         <input
+          className="question-item-control"
           type="text"
           value={editedAnswer3}
           onChange={(e) => setEditedAnswer3(e.target.value)}
         />
-      </label>
-      <label>
-        Answer 4:
+      </div>
+      <div className="question-item-section">
+        <label>
+          Answer 4 <span className="question-item-required">*</span>
+        </label>
         <input
+          className="question-item-control"
           type="text"
           value={editedAnswer4}
           onChange={(e) => setEditedAnswer4(e.target.value)}
         />
-      </label>
-      <label>
-        Correct ID:
-        <input
-          type="text"
-          value={editedCorrectId}
-          onChange={(e) => setEditedCorrectId(e.target.value)}
-        />
-      </label>
-      <button onClick={updateQuestion}>Save Changes</button>
-      <button onClick={deleteQuestion}>Delete</button>
+      </div>
+      <div className="question-item-section">
+        <label htmlFor="correctId">
+          Correct Answer <span className="question-item-required">*</span>
+        </label>
+        <div className="question-item-radio-group">
+          {[1, 2, 3, 4].map((correctId) => (
+            <div className="question-item-radio-option" key={correctId}>
+              <input
+                type="radio"
+                name={`correctId-q${id}`}
+                value={correctId}
+                id={`correctId${correctId}-q${id}`}
+                onChange={(e) => {
+                  setEditedCorrectId(e.target.value);
+                }}
+                defaultChecked={correctId === editedCorrectId}
+                required
+              />
+              <label
+                className="question-item-radio-label"
+                htmlFor={`correctId${correctId}-q${id}`}
+              >
+                {correctId}
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="question-item-button-wrapper">
+        <button
+          className="question-item-button question-item-button-modify"
+          onClick={updateQuestion}
+        >
+          Modify
+        </button>
+        <button
+          className="question-item-button question-item-button-delete"
+          onClick={deleteQuestion}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

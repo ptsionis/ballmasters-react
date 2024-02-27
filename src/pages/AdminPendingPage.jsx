@@ -4,6 +4,7 @@ import AdminPendingQuestion from "../components/AdminPendingQuestion/AdminPendin
 
 import { fetchAllPendingData } from "../services/pendingQuestionService";
 import "./AdminPendingPage.css";
+import PageHeader from "../components/PageHeader/PageHeader";
 
 const AdminPendingPage = () => {
   const [pendingQuestions, setPendingQuestions] = useState([]);
@@ -22,7 +23,7 @@ const AdminPendingPage = () => {
   return (
     <main className="admin-pending-main">
       <div className="admin-pending-wrapper">
-        <h2 className="admin-pending-title">Pending Questions</h2>
+        <PageHeader title={"Pending Questions"} />
         {pendingQuestions.map((item) => {
           return (
             <AdminPendingQuestion
