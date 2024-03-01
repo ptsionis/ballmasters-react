@@ -4,7 +4,7 @@
   flex-direction: column;
   margin-bottom: 20px;
   padding: 20px 20px 20px 20px;
-  background-color: #161616;
+  background-color: var(--bg-primary);
   border-radius: 10px;
 }
 
@@ -72,15 +72,15 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
+  color: var(--text-primary);
 }
 
 .question-item-button-modify {
-  background-color: #088b4a;
+  background-color: var(--btn-third);
 }
 
 .question-item-button-modify:hover {
-  background-color: #097c43;
+  background-color: var(--btn-third-d);
 }
 
 .question-item-button-delete {

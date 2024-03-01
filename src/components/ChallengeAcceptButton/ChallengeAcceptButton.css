@@ -10,10 +10,10 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
-  background-color: #088b4a;
+  color: var(--text-primary);
+  background-color: var(--btn-third);
 }
 
 .challenge-accept-button:hover {
-  background-color: #097c43;
+  background-color: var(--btn-third-d);
 }

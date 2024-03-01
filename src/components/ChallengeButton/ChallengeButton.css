@@ -9,7 +9,7 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
+  color: var(--text-primary);
 }
 
 .challenge-button-disabled {
@@ -23,11 +23,11 @@
   border: none;
   border-radius: 10px;
   cursor: not-allowed;
-  color: white;
+  color: var(--text-primary);
 }
 
 .challenge-button-blue {
-  background-color: #1877f2;
+  background-color: var(--btn-primary);
 }
 
 .challenge-button-gray {
@@ -43,5 +43,5 @@
 }
 
 .challenge-button-blue:hover {
-  background-color: #1562c7;
+  background-color: var(--btn-primary-d);
 }

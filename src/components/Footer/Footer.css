@@ -9,17 +9,17 @@
 }
 
 .footer-text {
-  color: rgb(165, 165, 165);
+  color: var(--text-disabled);
   font-size: 12px;
   font-weight: 300;
 }
 
 .footer-link {
-  color: rgb(165, 165, 165);
+  color: var(--text-disabled);
 }
 
 .footer-link:hover {
-  color: #1877f2;
+  color: var(--text-disabled-d);
 }
 
 @media screen and (max-width: 1024px) {

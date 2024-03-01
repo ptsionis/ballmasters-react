@@ -4,7 +4,7 @@
   flex-direction: column;
   margin-bottom: 20px;
   padding: 20px 20px 20px 20px;
-  background-color: #161616;
+  background-color: var(--bg-primary);
   border-radius: 10px;
 }
 
@@ -63,12 +63,12 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
-  background-color: #1877f2;
+  color: var(--text-primary);
+  background-color: var(--btn-primary);
 }
 
 .submit-form-submit:hover {
-  background-color: #1562c7;
+  background-color: var(--btn-primary-d);
 }
 
 .submit-form-cancel {
@@ -83,7 +83,7 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
+  color: var(--text-primary);
   background-color: rgb(139, 8, 8);
 }
 

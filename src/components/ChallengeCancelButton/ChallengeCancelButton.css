@@ -9,7 +9,7 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
+  color: var(--text-primary);
   background-color: rgb(139, 8, 8);
 }
 

@@ -10,10 +10,10 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
-  background-color: #8b0808;
+  color: var(--text-primary);
+  background-color: var(--btn-secondary);
 }
 
 .challenge-decline-button:hover {
-  background-color: #6e0707;
+  background-color: var(--btn-secondary-d);
 }

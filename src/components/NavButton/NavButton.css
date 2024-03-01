@@ -5,19 +5,19 @@
   margin-top: 10px;
   border: none;
   border-radius: 10px;
-  background-color: #161616;
-  color: white;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   cursor: pointer;
 }
 
 .admin-nav-button {
-  background-color: #8b0808;
+  background-color: var(--btn-secondary);
 }
 
 .nav-button:hover {
-  background-color: #0f0f0f;
+  background-color: var(--bg-alt-d);
 }
 
 .admin-nav-button:hover {
-  background-color: #6e0707;
+  background-color: var(--btn-secondary-d);
 }

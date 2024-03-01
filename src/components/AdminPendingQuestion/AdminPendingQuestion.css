@@ -4,7 +4,7 @@
   flex-direction: column;
   margin-bottom: 20px;
   padding: 20px 20px 20px 20px;
-  background-color: #161616;
+  background-color: var(--bg-primary);
   border-radius: 10px;
 }
 
@@ -72,23 +72,23 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: white;
+  color: var(--text-primary);
 }
 
 .pending-item-button-accept {
-  background-color: #1877f2;
+  background-color: var(--btn-primary);
 }
 
 .pending-item-button-accept:hover {
-  background-color: #1562c7;
+  background-color: var(--btn-primary-d);
 }
 
 .pending-item-button-modify {
-  background-color: #088b4a;
+  background-color: var(--btn-third);
 }
 
 .pending-item-button-modify:hover {
-  background-color: #097c43;
+  background-color: var(--btn-third-d);
 }
 
 .pending-item-button-delete {
