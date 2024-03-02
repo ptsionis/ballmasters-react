@@ -20,7 +20,7 @@ const Nav = ({ setToggleNav }) => {
       <button className="nav-close" onClick={toggleNav}>
         <CgClose color="red" size={"20px"} />
       </button>
-      <NavButton text={"Preferences"} page={"profile"} />
+      <NavButton text={"Profile"} page={"profile"} />
       <NavButton text={"Submit Question"} page={"submit-pending"} />
       {user.role !== Roles.USER ? (
         <>

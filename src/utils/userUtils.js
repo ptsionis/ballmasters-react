@@ -14,6 +14,18 @@ export const createUser = async (setUser) => {
       data.friends,
       data.profile.gamesPlayed,
       data.profile.gamesWon,
+      data.profile.historyPlayed,
+      data.profile.historyWon,
+      data.profile.geographyPlayed,
+      data.profile.geographyWon,
+      data.profile.financePlayed,
+      data.profile.financeWon,
+      data.profile.logoPlayed,
+      data.profile.logoWon,
+      data.profile.triviaPlayed,
+      data.profile.triviaWon,
+      data.profile.hiddenPlayed,
+      data.profile.hiddenWon,
       data.profile.createdAt
     );
     setUser(user);

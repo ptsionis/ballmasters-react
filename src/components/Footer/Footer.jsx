@@ -12,7 +12,6 @@ const Footer = () => {
         </a>{" "}
         &copy; {new Date().getFullYear()}
       </span>
-      <div>test</div>
     </footer>
   );
 };

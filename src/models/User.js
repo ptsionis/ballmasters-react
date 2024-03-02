@@ -9,6 +9,18 @@ export class User {
     friends,
     gamesPlayed,
     gamesWon,
+    historyPlayed,
+    historyWon,
+    geographyPlayed,
+    geographyWon,
+    financePlayed,
+    financeWon,
+    logoPlayed,
+    logoWon,
+    triviaPlayed,
+    triviaWon,
+    hiddenPlayed,
+    hiddenWon,
     createdAt
   ) {
     this.id = id;
@@ -20,6 +32,18 @@ export class User {
     this.friends = friends;
     this.gamesPlayed = gamesPlayed;
     this.gamesWon = gamesWon;
+    this.historyPlayed = historyPlayed;
+    this.historyWon = historyWon;
+    this.geographyPlayed = geographyPlayed;
+    this.geographyWon = geographyWon;
+    this.financePlayed = financePlayed;
+    this.financeWon = financeWon;
+    this.logoPlayed = logoPlayed;
+    this.logoWon = logoWon;
+    this.triviaPlayed = triviaPlayed;
+    this.triviaWon = triviaWon;
+    this.hiddenPlayed = hiddenPlayed;
+    this.hiddenWon = hiddenWon;
     this.createdAt = createdAt;
   }
 
@@ -41,6 +65,24 @@ export class User {
     }
   }
 
+  getGoalScore() {
+    if (this.score < 500) {
+      return 500;
+    } else if (this.score < 1000) {
+      return 1000;
+    } else if (this.score < 1500) {
+      return 1500;
+    } else if (this.score < 2000) {
+      return 2000;
+    } else if (this.score < 2500) {
+      return 2500;
+    } else if (this.score < 3000) {
+      return 3000;
+    } else {
+      return 0;
+    }
+  }
+
   getJoinedDate() {
     return this.createdAt.split("T")[0];
   }
@@ -49,6 +91,6 @@ export class User {
     if (this.gamesPlayed === 0) {
       return "-";
     }
-    return (this.gamesPlayed / this.gamesWon) * 100 + "%";
+    return Math.round((this.gamesWon / this.gamesPlayed) * 100) + "%";
   }
 }
