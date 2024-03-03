@@ -1,0 +1,17 @@
+.game-category-tile {
+  width: 220px;
+  height: 70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 3%);
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.game-category-tile:hover {
+  background-color: var(--bg-primary-d);
+}

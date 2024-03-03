@@ -10,7 +10,7 @@
   cursor: pointer;
   color: var(--text-primary);
   font-size: 15px;
-  background-color: var(--btn-primary);
+  background-color: var(--btn-primary-d);
 }
 
 .login-button-text {
@@ -18,5 +18,5 @@
 }
 
 .login-button:hover {
-  background-color: var(--btn-primary-d);
+  background-color: var(--btn-primary);
 }

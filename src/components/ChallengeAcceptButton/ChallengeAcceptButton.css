@@ -11,9 +11,9 @@
   border-radius: 10px;
   cursor: pointer;
   color: var(--text-primary);
-  background-color: var(--btn-third);
+  background-color: var(--btn-third-d);
 }
 
 .challenge-accept-button:hover {
-  background-color: var(--btn-third-d);
+  background-color: var(--btn-third);
 }

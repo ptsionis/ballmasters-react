@@ -26,22 +26,22 @@
   color: var(--text-primary);
 }
 
-.challenge-button-blue {
-  background-color: var(--btn-primary);
-}
-
-.challenge-button-gray {
-  background-color: rgb(63, 63, 63);
-}
-
-.challenge-button-yellow {
-  background-color: rgba(22, 22, 22, 0.5);
-}
-
-.challenge-button-red {
-  background-color: rgb(139, 8, 8);
-}
-
-.challenge-button-blue:hover {
+.challenge-button-online {
   background-color: var(--btn-primary-d);
+}
+
+.challenge-button-offline {
+  background-color: var(--text-disabled-d);
+}
+
+.challenge-button-pending {
+  background-color: var(--text-disabled-d);
+}
+
+.challenge-button-playing {
+  background-color: var(--btn-secondary-d);
+}
+
+.challenge-button-online:hover {
+  background-color: var(--btn-primary);
 }

@@ -12,7 +12,7 @@
   text-align: center;
   margin: 25px 0px;
   padding: 5px 0px;
-  background-color: rgb(139, 8, 8);
+  background-color: var(--btn-secondary);
   border-radius: 10px;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .question-item-required {
-  color: rgb(139, 8, 8);
+  color: var(--btn-secondary);
 }
 
 .question-item-control {
@@ -84,14 +84,14 @@
 }
 
 .question-item-button-delete {
-  background-color: rgb(139, 8, 8);
+  background-color: var(--btn-secondary);
 }
 
 .question-item-button-delete:hover {
-  background-color: rgb(94, 6, 6);
+  background-color: var(--btn-secondary-d);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   .question-item-radio-group {
     flex-direction: column;
   }

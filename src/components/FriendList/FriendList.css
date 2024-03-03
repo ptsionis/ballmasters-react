@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  padding: 35px 25px 35px 25px;
 }
 
 .friendlist-ul {

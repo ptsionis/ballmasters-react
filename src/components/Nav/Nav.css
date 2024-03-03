@@ -20,7 +20,7 @@
   border: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   .nav {
     margin-top: 0;
     position: absolute;

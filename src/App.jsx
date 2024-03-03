@@ -16,11 +16,12 @@ export const AppContext = createContext(null);
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const [gameRoom, setGameRoom] = useState("");
   const [currentPage, setCurrentPage] = useState("/");
   const [isLoading, setIsLoading] = useState(true);
 
   const renderPage = () => {
-    if (currentPage !== "/" && currentPage !== "/game") {
+    if (currentPage !== "/" && currentPage !== "game") {
       socket.emit("not_available");
     } else if (currentPage === "/") {
       socket.emit("available");
@@ -84,6 +85,8 @@ const App = () => {
                   setIsAuthenticated,
                   user,
                   setUser,
+                  gameRoom,
+                  setGameRoom,
                   setCurrentPage,
                 }}
               >

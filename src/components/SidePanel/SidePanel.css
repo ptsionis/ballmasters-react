@@ -13,7 +13,7 @@
   margin-top: 10px;
   border: none;
   border-radius: 10px;
-  background-color: rgb(63, 63, 63);
+  background-color: var(--bg-primary);
   padding: 10px;
   cursor: pointer;
 }

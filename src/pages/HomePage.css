@@ -2,19 +2,19 @@
   position: relative;
   display: flex;
   flex-grow: 1;
+  padding: 35px 25px 35px 25px;
 }
 
 .home-section {
   position: relative;
   width: 33%;
   height: 100%;
-  margin: 0px 5px 0px 5px;
-  padding: 35px 25px 35px 25px;
+  margin: 0px 5px;
   border-radius: 10px;
   background-color: var(--bg-primary);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   .home-main {
     display: flex;
     flex-direction: column;

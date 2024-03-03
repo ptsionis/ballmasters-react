@@ -2,17 +2,17 @@
   --bg-primary: hsl(0, 0%, 9%);
   --bg-primary-d: hsl(0, 0%, 6%);
   --bg-alt: hsl(0, 0%, 17%);
-  --bg-alt-d: hsl(0, 0%, 7%);
+  --bg-alt-d: hsl(0, 0%, 12%);
   --text-primary: hsl(0, 0%, 98%);
-  --text-primary-d: hsl(0, 0%, 88%);
+  --text-primary-d: hsl(0, 0%, 93%);
   --text-disabled: hsl(0, 0%, 65%);
-  --text-disabled-d: hsl(0, 0%, 55%);
+  --text-disabled-d: hsl(0, 0%, 60%);
   --btn-primary: hsl(214, 89%, 52%);
-  --btn-primary-d: hsl(214, 89%, 42%);
+  --btn-primary-d: hsl(214, 89%, 47%);
   --btn-secondary: hsl(0, 89%, 29%);
-  --btn-secondary-d: hsl(0, 89%, 19%);
+  --btn-secondary-d: hsl(0, 89%, 24%);
   --btn-third: hsl(150, 89%, 29%);
-  --btn-third-d: hsl(150, 89%, 19%);
+  --btn-third-d: hsl(150, 89%, 24%);
 }
 
 * {
@@ -31,20 +31,18 @@ body {
 main {
   width: 100dvw;
   height: 100dvh;
-  margin: 0;
-  padding: 20px;
 }
 
 button {
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 a {
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   main {
     flex-direction: column;
   }

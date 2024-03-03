@@ -10,9 +10,9 @@
   border-radius: 10px;
   cursor: pointer;
   color: var(--text-primary);
-  background-color: rgb(139, 8, 8);
+  background-color: var(--btn-secondary-d);
 }
 
 .challenge-cancel-button:hover {
-  background-color: rgb(94, 6, 6);
+  background-color: var(--btn-secondary);
 }

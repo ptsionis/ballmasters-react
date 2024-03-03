@@ -16,19 +16,6 @@ const ChallengeButton = ({ friendId, availability }) => {
     }
   };
 
-  const getButtonColor = () => {
-    switch (availability) {
-      case Availabilities.ONLINE:
-        return "blue";
-      case Availabilities.OFFLINE:
-        return "gray";
-      case Availabilities.PENDING:
-        return "yellow";
-      case Availabilities.PLAYING:
-        return "red";
-    }
-  };
-
   const getButtonText = () => {
     switch (availability) {
       case Availabilities.ONLINE:
@@ -50,7 +37,7 @@ const ChallengeButton = ({ friendId, availability }) => {
     <button
       className={`challenge-button${
         getButtonStatus() ? "" : "-disabled"
-      } challenge-button-${getButtonColor()}`}
+      } challenge-button-${availability}`}
       type="button"
       disabled={!getButtonStatus()}
       onClick={challengeFriend}

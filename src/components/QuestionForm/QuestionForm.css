@@ -17,7 +17,7 @@
 }
 
 .submit-form-required {
-  color: rgb(139, 8, 8);
+  color: var(--btn-secondary);
 }
 
 .submit-form-control {
@@ -64,11 +64,11 @@
   border-radius: 10px;
   cursor: pointer;
   color: var(--text-primary);
-  background-color: var(--btn-primary);
+  background-color: var(--btn-primary-d);
 }
 
 .submit-form-submit:hover {
-  background-color: var(--btn-primary-d);
+  background-color: var(--btn-primary);
 }
 
 .submit-form-cancel {
@@ -84,14 +84,14 @@
   border-radius: 10px;
   cursor: pointer;
   color: var(--text-primary);
-  background-color: rgb(139, 8, 8);
+  background-color: var(--btn-secondary-d);
 }
 
 .submit-form-cancel:hover {
-  background-color: rgb(94, 6, 6);
+  background-color: var(--btn-secondary);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   .submit-form-radio-group {
     flex-direction: column;
   }

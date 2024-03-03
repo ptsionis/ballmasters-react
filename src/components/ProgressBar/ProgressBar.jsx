@@ -7,7 +7,7 @@ const ProgressBar = ({ currentValue, goalValue, rank }) => {
 
   useEffect(() => {
     let widthPercentage = 0;
-    if (currentValue === 0) {
+    if (currentValue <= 0) {
       widthPercentage = 1;
     } else if (goalValue === 0) {
       widthPercentage = 100;

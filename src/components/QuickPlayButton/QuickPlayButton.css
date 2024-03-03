@@ -10,7 +10,7 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background-color: var(--btn-primary);
+  background-color: var(--btn-primary-d);
   color: var(--text-primary);
   font-size: 16px;
   white-space: nowrap;
@@ -19,5 +19,5 @@
 }
 
 .quick-play:hover {
-  background-color: var(--btn-primary-d);
+  background-color: var(--btn-primary);
 }

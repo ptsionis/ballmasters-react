@@ -1,12 +1,28 @@
 .game-main {
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  padding: 35px 25px;
+}
+
+.game-header {
+  width: 100%;
+  height: 100px;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-primary);
 }
 
 .game-wrapper {
   width: 100%;
-  margin: 0px 5px 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 10px;
   padding: 35px 25px 35px 25px;
   border-radius: 10px;
   background-color: var(--bg-primary);

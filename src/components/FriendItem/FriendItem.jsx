@@ -11,7 +11,7 @@ import { Availabilities } from "../../models/enums/availabilityEnum";
 import "./FriendItem.css";
 
 const FriendItem = ({ friend }) => {
-  const { socket } = useContext(AppContext);
+  const { socket, setGameRoom, setCurrentPage } = useContext(AppContext);
   const [availability, setAvailability] = useState(Availabilities.OFFLINE);
   const [challengedMe, setChallengedMe] = useState(false);
   const [cancelButton, setCancelButton] = useState(false);
@@ -64,6 +64,25 @@ const FriendItem = ({ friend }) => {
     if (friend.id === targetUserId) {
       setCancelButton(false);
     }
+  });
+
+  socket.on("accept_error_ch", (targetUserId) => {
+    if (friend.id === targetUserId) {
+      setCancelButton(false);
+      setAvailability(Availabilities.ONLINE);
+    }
+  });
+
+  socket.on("accept_error_ta", (challengerUserId) => {
+    if (friend.id === challengerUserId) {
+      setChallengedMe(false);
+      setAvailability(Availabilities.ONLINE);
+    }
+  });
+
+  socket.on("start_game", (newRoomId) => {
+    setGameRoom(newRoomId);
+    setCurrentPage("game");
   });
 
   return (
