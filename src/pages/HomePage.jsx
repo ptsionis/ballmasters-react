@@ -2,8 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 
 import SidePanel from "../components/SidePanel/SidePanel";
 import Welcome from "../components/Welcome/Welcome";
-import ModalError from "../components/ModalError/ModalError";
 import FriendList from "../components/FriendList/FriendList";
+import ModalCustom from "../components/ModalCustom/ModalCustom";
 import { AppContext } from "../App";
 import { homeInitialization } from "../utils/pagesUtils";
 
@@ -14,6 +14,10 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorText, setErrorText] = useState("");
+
+  const closeModal = () => {
+    setShowErrorModal(false);
+  };
 
   useEffect(() => {
     homeInitialization(socket, setUser);
@@ -37,10 +41,10 @@ const HomePage = () => {
           <Welcome />
           <FriendList />
           {showErrorModal ? (
-            <ModalError
-              setShowErrorModal={setShowErrorModal}
-              setErrorText={setErrorText}
-              errorMsg={errorText}
+            <ModalCustom
+              modalMsg={errorText}
+              isError={true}
+              callback={closeModal}
             />
           ) : null}
         </>

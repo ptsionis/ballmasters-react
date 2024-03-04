@@ -7,7 +7,7 @@ import { capitalizeFirstLetter } from "../../utils/otherUtils";
 import { AppContext } from "../../App";
 
 import "./QuestionForm.css";
-import ModalForm from "../ModalForm/ModalForm";
+import ModalCustom from "../ModalCustom/ModalCustom";
 
 const QuestionForm = () => {
   const { setCurrentPage } = useContext(AppContext);
@@ -17,6 +17,16 @@ const QuestionForm = () => {
   const cancelAndReturn = () => {
     setCurrentPage("/");
   };
+
+  const closeModal = () => {
+    setShowFormModal(false);
+    if (submitSuccess) {
+      setCurrentPage("/");
+    }
+  };
+
+  const msgSuccess = "Question submitted successfully!";
+  const msgFail = "An error occured, please try again!";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -203,9 +213,10 @@ const QuestionForm = () => {
         </div>
       </form>
       {showFormModal ? (
-        <ModalForm
-          success={submitSuccess}
-          setShowFormModal={setShowFormModal}
+        <ModalCustom
+          modalMsg={submitSuccess ? msgSuccess : msgFail}
+          isError={submitSuccess}
+          callback={closeModal}
         />
       ) : null}
     </>
