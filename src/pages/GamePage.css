@@ -19,11 +19,21 @@
 .game-wrapper {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
   flex-grow: 1;
   margin-top: 10px;
   padding: 35px 25px 35px 25px;
   border-radius: 10px;
   background-color: var(--bg-primary);
+}
+
+.game-turn {
+  width: 100%;
+  margin-bottom: 35px;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--bg-primary-d);
 }

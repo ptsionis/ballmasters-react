@@ -10,20 +10,26 @@ import GameCategoriesWrapper from "../components/GameCategoriesWrapper/GameCateg
 const GamePage = () => {
   const { user, gameRoom, setCurrentPage, socket } = useContext(AppContext);
   const [opponent, setOpponent] = useState(null);
+  const [turn, setTurn] = useState(null);
 
   useEffect(() => {
-    socket.emit("get_opponent_info", gameRoom);
+    socket.emit("game_init_info", gameRoom);
   }, []);
 
-  socket.on("set_opponent_info", (opponent) => {
+  socket.on("set_game_init_info", (opponent, turn) => {
     setOpponent(opponent);
+    setTurn(turn);
+  });
+
+  socket.on("set_question", (question) => {
+    console.log(question);
   });
 
   socket.on("opponent_quit", () => {
     setCurrentPage("/");
   });
 
-  if (!opponent) {
+  if (!opponent || !turn) {
     return <Loader />;
   }
 
@@ -35,7 +41,10 @@ const GamePage = () => {
         <GamePlayer player={opponent} isOpponent={true} />
       </div>
       <div className="game-wrapper">
-        <GameCategoriesWrapper />
+        <span className="game-turn">
+          {turn === socket.id ? "Playing!" : "Waiting..."}
+        </span>
+        <GameCategoriesWrapper turn={turn} />
       </div>
     </main>
   );
