@@ -1,0 +1,25 @@
+.game-question-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  flex-grow: 1;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: var(--bg-primary-d);
+}
+
+.game-question-head {
+  width: 100%;
+  padding: 15px 35px;
+  border-radius: 10px;
+  background-color: var(--bg-alt);
+  text-align: center;
+}
+
+.game-question {
+  width: 100%;
+  text-align: center;
+  margin-top: 35px;
+}

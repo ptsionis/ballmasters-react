@@ -3,16 +3,26 @@ import React, { useContext } from "react";
 import "./GameCategoryTile.css";
 import { AppContext } from "../../App";
 
-const GameCategoryTile = ({ category, level }) => {
+const GameCategoryTile = ({ category, level, turn }) => {
   const { socket, gameRoom } = useContext(AppContext);
+
   const getQuestion = () => {
-    console.log(category, level);
     socket.emit("get_question", gameRoom, category, level);
   };
 
+  const isDisabled = () => {
+    return socket.id !== turn;
+  };
+
   return (
-    <button className="game-category-tile" onClick={getQuestion}>
-      {category} x{level}
+    <button
+      className={`${
+        isDisabled() ? "game-category-tile-disabled" : "game-category-tile"
+      }`}
+      onClick={getQuestion}
+      disabled={isDisabled()}
+    >
+      {`${category} X${level}`}
     </button>
   );
 };

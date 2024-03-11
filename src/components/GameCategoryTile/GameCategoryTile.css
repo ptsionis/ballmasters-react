@@ -15,3 +15,17 @@
 .game-category-tile:hover {
   background-color: var(--bg-primary-d);
 }
+
+.game-category-tile-disabled {
+  width: 220px;
+  height: 70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  cursor: not-allowed;
+  background-color: var(--text-disabled);
+  color: var(--text-primary);
+}
