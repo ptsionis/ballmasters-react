@@ -11,16 +11,19 @@ import GameQuestionWrapper from "../components/GameQuestionWrapper/GameQuestionW
 
 const GamePage = () => {
   const { user, gameRoom, setCurrentPage, socket } = useContext(AppContext);
+  const [player, setPlayer] = useState(null);
   const [opponent, setOpponent] = useState(null);
   const [turn, setTurn] = useState(null);
   const [stage, setStage] = useState(Stages.SELECTION);
   const [question, setQuestion] = useState(null);
+  const [questionsPlayed, setQuestionsPlayed] = useState([]);
 
   useEffect(() => {
     socket.emit("game_init_info", gameRoom);
   }, []);
 
-  socket.on("set_game_init_info", (opponent, turn) => {
+  socket.on("set_game_init_info", (player, opponent, turn) => {
+    setPlayer(player);
     setOpponent(opponent);
     setTurn(turn);
   });
@@ -28,6 +31,17 @@ const GamePage = () => {
   socket.on("set_question", (question) => {
     setStage(Stages.QUESTION);
     setQuestion(question);
+  });
+
+  socket.on("update_players", (player, opponent) => {
+    setPlayer(player);
+    setOpponent(opponent);
+  });
+
+  socket.on("start_next_round", (questionsPlayed, turn) => {
+    setQuestionsPlayed(questionsPlayed);
+    setTurn(turn);
+    setStage(Stages.SELECTION);
   });
 
   socket.on("opponent_quit", () => {
@@ -41,8 +55,8 @@ const GamePage = () => {
   return (
     <main className="game-main">
       <div className="game-header">
-        <GamePlayer player={user} isOpponent={false} />
-        <Scoreboard scoreMe={0} scoreOpponent={0} />
+        <GamePlayer player={player} isOpponent={false} />
+        <Scoreboard scoreMe={player.points} scoreOpponent={opponent.points} />
         <GamePlayer player={opponent} isOpponent={true} />
       </div>
       <div className="game-wrapper">
@@ -50,9 +64,12 @@ const GamePage = () => {
           {turn === socket.id ? "Playing!" : "Waiting..."}
         </span>
         {stage === Stages.SELECTION ? (
-          <GameCategoriesWrapper turn={turn} />
+          <GameCategoriesWrapper
+            turn={turn}
+            questionsPlayed={questionsPlayed}
+          />
         ) : (
-          <GameQuestionWrapper question={question} />
+          <GameQuestionWrapper turn={turn} question={question} />
         )}
       </div>
     </main>

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import "./GameCategoryTile.css";
 import { AppContext } from "../../App";
 
-const GameCategoryTile = ({ category, level, turn }) => {
+const GameCategoryTile = ({ category, level, turn, isPlayed }) => {
   const { socket, gameRoom } = useContext(AppContext);
 
   const getQuestion = () => {
@@ -11,7 +11,7 @@ const GameCategoryTile = ({ category, level, turn }) => {
   };
 
   const isDisabled = () => {
-    return socket.id !== turn;
+    return socket.id !== turn || isPlayed;
   };
 
   return (

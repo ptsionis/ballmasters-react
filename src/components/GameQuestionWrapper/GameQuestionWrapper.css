@@ -7,12 +7,11 @@
   flex-grow: 1;
   padding: 25px;
   border-radius: 10px;
-  background-color: var(--bg-primary-d);
 }
 
 .game-question-head {
   width: 100%;
-  padding: 15px 35px;
+  padding: 10px 25px;
   border-radius: 10px;
   background-color: var(--bg-alt);
   text-align: center;
@@ -21,5 +20,13 @@
 .game-question {
   width: 100%;
   text-align: center;
-  margin-top: 35px;
+  margin: 35px 0px;
+}
+
+.game-answers-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: start;
+  align-items: center;
 }

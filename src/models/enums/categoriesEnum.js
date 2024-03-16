@@ -1,8 +1,8 @@
 export const Categories = {
-  HISTORY: "history",
-  GEOGRAPHY: "geography",
-  FINANCE: "finance",
-  LOGO: "logo",
-  TRIVIA: "trivia",
-  HIDDEN: "hidden",
+  HISTORY: "HISTORY",
+  GEOGRAPHY: "GEOGRAPHY",
+  FINANCE: "FINANCE",
+  LOGO: "LOGO",
+  TRIVIA: "TRIVIA",
+  HIDDEN: "HIDDEN",
 };
