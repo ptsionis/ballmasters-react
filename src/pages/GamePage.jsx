@@ -48,6 +48,10 @@ const GamePage = () => {
     setCurrentPage("/");
   });
 
+  socket.on("game_ended", () => {
+    setCurrentPage("/");
+  });
+
   if (!opponent || !turn) {
     return <Loader />;
   }

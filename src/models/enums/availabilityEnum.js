@@ -1,6 +1,6 @@
 export const Availabilities = {
-  ONLINE: "online",
-  OFFLINE: "offline",
-  PENDING: "pending",
-  PLAYING: "playing",
+  ONLINE: "ONLINE",
+  OFFLINE: "OFFLINE",
+  PENDING: "PENDING",
+  PLAYING: "PLAYING",
 };
