@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../App";
 
 import AvailabilityIcon from "../AvailabilityIcon/AvailabilityIcon";
@@ -16,7 +16,7 @@ const FriendItem = ({ friend }) => {
   const [challengedMe, setChallengedMe] = useState(false);
   const [cancelButton, setCancelButton] = useState(false);
 
-  socket.on("friendStatus", ({ userId, status }) => {
+  socket.on("friend_status", ({ userId, status }) => {
     if (userId === friend.id) {
       if (status === Availabilities.OFFLINE) {
         setChallengedMe(false);

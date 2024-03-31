@@ -65,7 +65,7 @@ const GamePage = () => {
       </div>
       <div className="game-wrapper">
         <span className="game-turn">
-          {turn === socket.id ? "Playing!" : "Waiting..."}
+          {turn === user.id ? "Playing!" : "Waiting..."}
         </span>
         {stage === Stages.SELECTION ? (
           <GameCategoriesWrapper

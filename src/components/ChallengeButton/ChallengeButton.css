@@ -26,22 +26,22 @@
   color: var(--text-primary);
 }
 
-.challenge-button-online {
+.challenge-button-ONLINE {
   background-color: var(--btn-primary-d);
 }
 
-.challenge-button-offline {
+.challenge-button-OFFLINE {
   background-color: var(--text-disabled-d);
 }
 
-.challenge-button-pending {
+.challenge-button-PENDING {
   background-color: var(--text-disabled-d);
 }
 
-.challenge-button-playing {
+.challenge-button-PLAYING {
   background-color: var(--btn-secondary-d);
 }
 
-.challenge-button-online:hover {
+.challenge-button-ONLINE:hover {
   background-color: var(--btn-primary);
 }

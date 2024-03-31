@@ -4,7 +4,7 @@ import { AppContext } from "../../App";
 import "./GameAnswerButton.css";
 
 const GameAnswerButton = ({ id, text, turn }) => {
-  const { gameRoom, socket } = useContext(AppContext);
+  const { user, gameRoom, socket } = useContext(AppContext);
   const [buttonClassName, setButtonClassName] = useState("game-answer-button");
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -13,7 +13,7 @@ const GameAnswerButton = ({ id, text, turn }) => {
   };
 
   useEffect(() => {
-    if (turn !== socket.id) {
+    if (turn !== user.id) {
       setButtonClassName("game-answer-button-disabled");
     }
   }, [turn]);

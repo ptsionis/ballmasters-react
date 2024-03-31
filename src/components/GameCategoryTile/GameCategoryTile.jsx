@@ -4,14 +4,14 @@ import "./GameCategoryTile.css";
 import { AppContext } from "../../App";
 
 const GameCategoryTile = ({ category, level, turn, isPlayed }) => {
-  const { socket, gameRoom } = useContext(AppContext);
+  const { user, socket, gameRoom } = useContext(AppContext);
 
   const getQuestion = () => {
     socket.emit("get_question", gameRoom, category, level);
   };
 
   const isDisabled = () => {
-    return socket.id !== turn || isPlayed;
+    return user.id !== turn || isPlayed;
   };
 
   return (

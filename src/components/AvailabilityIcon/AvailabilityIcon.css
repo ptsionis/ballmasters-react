@@ -5,18 +5,18 @@
   border-radius: 50%;
 }
 
-.online {
+.ONLINE {
   background: linear-gradient(to bottom right, #086d08, #0db40d, #0bec0b);
 }
 
-.offline {
+.OFFLINE {
   background: linear-gradient(to bottom right, #3f413f, #4f524f, #686968);
 }
 
-.playing {
+.PLAYING {
   background: linear-gradient(to bottom right, #d31709, #e71607, #f31202);
 }
 
-.pending {
+.PENDING {
   background: linear-gradient(to bottom right, #cfac0f, #e2ba09, #f3c704);
 }
