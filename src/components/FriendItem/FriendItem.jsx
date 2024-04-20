@@ -16,15 +16,24 @@ const FriendItem = ({ friend }) => {
   const [challengedMe, setChallengedMe] = useState(false);
   const [cancelButton, setCancelButton] = useState(false);
 
-  socket.on("friend_status", ({ userId, status }) => {
-    if (userId === friend.id) {
-      if (status === Availabilities.OFFLINE) {
-        setChallengedMe(false);
-        setCancelButton(false);
+  socket.on(
+    "friend_status",
+    ({ userId, status, challengedMe, amIChallenger }) => {
+      if (userId === friend.id) {
+        if (status === Availabilities.OFFLINE) {
+          setChallengedMe(false);
+          setCancelButton(false);
+        }
+        setAvailability(status);
+        if (challengedMe && amIChallenger) {
+          setCancelButton(true);
+        }
+        if (challengedMe && !amIChallenger) {
+          setChallengedMe(true);
+        }
       }
-      setAvailability(status);
     }
-  });
+  );
 
   socket.on("challenge_notification", (challengerUserId) => {
     if (friend.id === challengerUserId) {

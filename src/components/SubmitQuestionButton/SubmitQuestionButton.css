@@ -1,4 +1,4 @@
-.quick-play {
+.submit-question-button {
   width: 250px;
   height: 50px;
   margin: 10px 0px;
@@ -18,6 +18,6 @@
   text-overflow: ellipsis;
 }
 
-.quick-play:hover {
+.submit-question-button:hover {
   background-color: var(--bg-alt);
 }

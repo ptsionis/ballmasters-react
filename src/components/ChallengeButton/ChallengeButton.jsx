@@ -19,13 +19,13 @@ const ChallengeButton = ({ friendId, availability }) => {
   const getButtonText = () => {
     switch (availability) {
       case Availabilities.ONLINE:
-        return "PLAY";
+        return "Play";
       case Availabilities.OFFLINE:
-        return "OFFLINE";
+        return "Offline";
       case Availabilities.PENDING:
-        return "HOLD";
+        return "On hold";
       case Availabilities.PLAYING:
-        return "PLAYING";
+        return "Playing";
     }
   };
 

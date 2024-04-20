@@ -11,7 +11,7 @@ const ChallengeCancelButton = ({ friendId }) => {
 
   return (
     <button className="challenge-cancel-button" onClick={cancelChallenge}>
-      CANCEL
+      Cancel
     </button>
   );
 };
