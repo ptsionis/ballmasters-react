@@ -4,9 +4,9 @@ import "./Loader.css";
 
 const Loader = () => {
   return (
-    <main className="loader">
+    <div className="loader">
       <div className="lds-dual-ring"></div>
-    </main>
+    </div>
   );
 };
 

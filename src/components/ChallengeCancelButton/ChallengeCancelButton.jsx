@@ -3,10 +3,14 @@ import { AppContext } from "../../App";
 
 import "./ChallengeCancelButton.css";
 
-const ChallengeCancelButton = ({ friendId }) => {
+const ChallengeCancelButton = ({ friendId = "" }) => {
   const { socket } = useContext(AppContext);
   const cancelChallenge = () => {
-    socket.emit("challenge_cancel", friendId);
+    if (friendId) {
+      socket.emit("challenge_cancel", friendId);
+    } else {
+      socket.emit("open_challenge_cancel");
+    }
   };
 
   return (

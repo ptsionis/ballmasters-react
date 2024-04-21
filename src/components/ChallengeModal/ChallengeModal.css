@@ -1,0 +1,50 @@
+.challenge-modal-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+  z-index: 800;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.challenge-modal {
+  position: relative;
+  width: 500px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 60px 25px;
+  border-radius: 10px;
+  background-color: var(--bg-primary);
+}
+
+.challenge-modal-vs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 35px 0px;
+}
+
+.challenge-modal-vs {
+  margin: 0px 20px;
+}
+
+.challenge-modal-profile-pic {
+  width: 60px;
+  border-radius: 100%;
+}
+
+.challenge-modal-respond-wrapper {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
