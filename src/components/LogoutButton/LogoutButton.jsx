@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MdLogout } from "react-icons/md";
 import { logout } from "../../services/authServices";
+import { AppContext } from "../../App";
 
 import "./LogoutButton.css";
 
 const LogoutButton = () => {
+  const { socket } = useContext(AppContext);
   const userLogout = () => {
+    socket.disconnect();
     logout();
   };
   return (
     <button className="logout-btn" onClick={userLogout}>
-      Logout
+      <MdLogout size={"24px"} />
+      <span className="logout-btn-text">Logout</span>
     </button>
   );
 };

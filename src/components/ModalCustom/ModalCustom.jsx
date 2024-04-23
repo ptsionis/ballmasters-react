@@ -6,7 +6,7 @@ import "./ModalCustom.css";
 
 const ModalCustom = ({ modalMsg, isError, callback }) => {
   return (
-    <div className="modal-form-wrapper">
+    <div className="modal-form-wrapper popup-wrapper">
       <div className="modal-form">
         <span
           className={`modal-form-text ${

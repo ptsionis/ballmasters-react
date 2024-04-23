@@ -5,7 +5,6 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import AdminPendingPage from "./pages/AdminPendingPage";
-import SubmitPendingPage from "./pages/SubmitPendingPage";
 import AdminQuestionsPage from "./pages/AdminQuestionsPage";
 import GamePage from "./pages/GamePage";
 import { checkIfAuthenticated } from "./utils/authUtils";
@@ -35,8 +34,6 @@ const App = () => {
         return <AdminPendingPage />;
       case "admin-questions":
         return <AdminQuestionsPage />;
-      case "submit-pending":
-        return <SubmitPendingPage />;
       case "game":
         return <GamePage />;
       default:

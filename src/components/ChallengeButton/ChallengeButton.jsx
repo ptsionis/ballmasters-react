@@ -35,8 +35,8 @@ const ChallengeButton = ({ friendId, availability }) => {
 
   return (
     <button
-      className={`challenge-button${
-        getButtonStatus() ? "" : "-disabled"
+      className={`challenge-button challenge-button${
+        getButtonStatus() ? "-enabled" : "-disabled"
       } challenge-button-${availability}`}
       type="button"
       disabled={!getButtonStatus()}

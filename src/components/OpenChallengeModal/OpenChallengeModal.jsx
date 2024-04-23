@@ -6,7 +6,7 @@ import Loader from "../Loader/Loader";
 
 const OpenChallengeModal = () => {
   return (
-    <div className="open-challenge-modal-wrapper">
+    <div className="open-challenge-modal-wrapper popup-wrapper">
       <div className="open-challenge-modal">
         <span className="open-challenge-modal-text">
           Waiting for an opponent...

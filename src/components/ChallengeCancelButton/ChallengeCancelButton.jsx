@@ -14,7 +14,10 @@ const ChallengeCancelButton = ({ friendId = "" }) => {
   };
 
   return (
-    <button className="challenge-cancel-button" onClick={cancelChallenge}>
+    <button
+      className=" challenge-button challenge-button-cancel"
+      onClick={cancelChallenge}
+    >
       Cancel
     </button>
   );

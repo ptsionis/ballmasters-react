@@ -35,11 +35,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 13px;
 }
 
 .challenge-response-wrapper {
-  width: 130px;
+  width: 110px;
   display: flex;
   justify-content: space-between;
   align-items: center;

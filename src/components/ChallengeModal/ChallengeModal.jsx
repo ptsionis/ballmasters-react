@@ -11,7 +11,7 @@ const ChallengeModal = ({ challenger }) => {
   const { user } = useContext(AppContext);
 
   return (
-    <div className="challenge-modal-wrapper">
+    <div className="challenge-modal-wrapper popup-wrapper">
       <div className="challenge-modal">
         <span>{getFirstName(challenger.username)} challenged you!</span>
         <div className="challenge-modal-vs-wrapper">

@@ -9,6 +9,7 @@ import ChallengeDeclineButton from "../ChallengeDeclineButton/ChallengeDeclineBu
 import { Availabilities } from "../../models/enums/availabilityEnum";
 
 import "./FriendItem.css";
+import { getFirstName } from "../../utils/userUtils";
 
 const FriendItem = ({ friend }) => {
   const { socket, setGameRoom, setCurrentPage } = useContext(AppContext);
@@ -112,7 +113,9 @@ const FriendItem = ({ friend }) => {
               e.target.src = "/images/noPicture.webp";
             }}
           />
-          <span className="frienditem-name-span">{friend.username}</span>
+          <span className="frienditem-name-span">
+            {getFirstName(friend.username)}
+          </span>
         </div>
       </div>
       {challengedMe ? (

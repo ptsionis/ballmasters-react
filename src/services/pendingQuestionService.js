@@ -20,27 +20,6 @@ export const fetchAllPendingData = async () => {
   }
 };
 
-export const submitPendingData = async (pendingData) => {
-  try {
-    const isAuthenticated = await checkIfAuthenticated();
-    if (isAuthenticated) {
-      const res = await axios.post(
-        "http://localhost:8000/pending-question/submit-pending",
-        pendingData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-      return res.data.success;
-    }
-  } catch (error) {
-    return false;
-  }
-};
-
 export const acceptPendingQuestion = async (id) => {
   try {
     const isAuthenticated = await checkIfAuthenticated();

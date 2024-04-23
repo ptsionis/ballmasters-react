@@ -8,18 +8,18 @@ import PlayVsFriendButton from "../components/PlayVsFriendButton/PlayVsFriendBut
 import SubmitQuestionButton from "../components/SubmitQuestionButton/SubmitQuestionButton";
 
 import { AppContext } from "../App";
-import { homeInitialization } from "../utils/pagesUtils";
+import { urlInitialization } from "../utils/pagesUtils";
 import { getFirstName } from "../utils/userUtils";
 
 import "./HomePage.css";
 import LogoutButton from "../components/LogoutButton/LogoutButton";
 import ChallengeModal from "../components/ChallengeModal/ChallengeModal";
 import OpenChallengeModal from "../components/OpenChallengeModal/OpenChallengeModal";
+import QuestionForm from "../components/QuestionForm/QuestionForm";
 
 const HomePage = () => {
   const { socket, user, setUser, setGameRoom, setCurrentPage } =
     useContext(AppContext);
-  const [isLoading, setIsLoading] = useState(true);
   const [showFriendlist, setShowFriendlist] = useState(false);
   const [showQuestionForm, setShowQuestionForm] = useState(false);
   const [showChallengeModal, setShowChallengeModal] = useState(false);
@@ -41,9 +41,14 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    homeInitialization(socket, setUser);
-    setIsLoading(false);
+    urlInitialization(socket, setUser);
+    socket.connect();
+    socket.emit("user_init");
   }, []);
+
+  socket.on("user_init_success", (user) => {
+    setUser(user);
+  });
 
   socket.on("challenge_notification_detailed", (challengerProfile) => {
     setChallenger(challengerProfile);
@@ -80,46 +85,36 @@ const HomePage = () => {
     setCurrentPage("game");
   });
 
-  if (isLoading) {
-    return <div>Loading....</div>;
-  }
-
   return (
     <main className="home-main">
-      {user && (
+      {user ? (
         <>
-          <section className="home-section welcome">
-            {user ? (
-              <div className="home-welcome-wrapper">
-                <img
-                  className="home-avatar-img"
-                  src={
-                    user.profilePicUrl
-                      ? user.profilePicUrl
-                      : "/images/noPicture.webp"
-                  }
-                  alt="Pic"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/images/noPicture.webp";
-                  }}
-                />
-                <h3 className="home-welcome-text">
-                  Welcome, {getFirstName(user.username)}!
-                </h3>
-              </div>
-            ) : (
-              <Loader />
-            )}
-            <div className="home-main-buttons">
-              <QuickPlayButton />
-              <PlayVsFriendButton toggleShowFriendlist={toggleShowFriendlist} />
-              <SubmitQuestionButton
-                toggleShowQuestionForm={toggleShowQuestionForm}
-              />
-              <LogoutButton />
-            </div>
-          </section>
+          <div className="home-welcome-wrapper">
+            <img
+              className="home-avatar-img"
+              src={
+                user.profilePicUrl
+                  ? user.profilePicUrl
+                  : "/images/noPicture.webp"
+              }
+              alt="Pic"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/images/noPicture.webp";
+              }}
+            />
+            <h3 className="home-welcome-text">
+              Welcome, {getFirstName(user.username)}!
+            </h3>
+          </div>
+          <div className="home-main-buttons">
+            <QuickPlayButton />
+            <PlayVsFriendButton toggleShowFriendlist={toggleShowFriendlist} />
+            <SubmitQuestionButton
+              toggleShowQuestionForm={toggleShowQuestionForm}
+            />
+            <LogoutButton />
+          </div>
           {showErrorModal ? (
             <ModalCustom
               modalMsg={errorText}
@@ -134,7 +129,12 @@ const HomePage = () => {
             <ChallengeModal challenger={challenger} />
           ) : null}
           {showOpenChallengeModal ? <OpenChallengeModal /> : null}
+          {showQuestionForm ? (
+            <QuestionForm toggleShowQuestionForm={toggleShowQuestionForm} />
+          ) : null}
         </>
+      ) : (
+        <Loader />
       )}
     </main>
   );
