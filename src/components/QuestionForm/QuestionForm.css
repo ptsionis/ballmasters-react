@@ -37,8 +37,8 @@
 }
 
 .submit-form-control {
-  margin: 5px 0px 5px 0px;
-  padding: 5px 10px 5px 10px;
+  margin: 5px 0px;
+  padding: 5px 10px;
   border-radius: 10px;
   border: none;
   background-color: rgb(199, 199, 199);

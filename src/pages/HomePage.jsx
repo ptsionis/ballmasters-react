@@ -6,16 +6,19 @@ import ModalCustom from "../components/ModalCustom/ModalCustom";
 import Loader from "../components/Loader/Loader";
 import PlayVsFriendButton from "../components/PlayVsFriendButton/PlayVsFriendButton";
 import SubmitQuestionButton from "../components/SubmitQuestionButton/SubmitQuestionButton";
+import AdminPendingQuestions from "../components/AdminPendingQuestions/AdminPendingQuestions";
 
 import { AppContext } from "../App";
 import { urlInitialization } from "../utils/pagesUtils";
 import { getFirstName } from "../utils/userUtils";
+import { Roles } from "../models/enums/rolesEnum";
 
 import "./HomePage.css";
 import LogoutButton from "../components/LogoutButton/LogoutButton";
 import ChallengeModal from "../components/ChallengeModal/ChallengeModal";
 import OpenChallengeModal from "../components/OpenChallengeModal/OpenChallengeModal";
 import QuestionForm from "../components/QuestionForm/QuestionForm";
+import AdminPendingButton from "../components/AdminPendingButton/AdminPendingButton";
 
 const HomePage = () => {
   const { socket, user, setUser, setGameRoom, setCurrentPage } =
@@ -24,6 +27,7 @@ const HomePage = () => {
   const [showQuestionForm, setShowQuestionForm] = useState(false);
   const [showChallengeModal, setShowChallengeModal] = useState(false);
   const [showOpenChallengeModal, setShowOpenChallengeModal] = useState(false);
+  const [showAdminPending, setShowAdminPending] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [challenger, setChallenger] = useState(null);
@@ -38,6 +42,10 @@ const HomePage = () => {
 
   const toggleShowQuestionForm = () => {
     setShowQuestionForm(!showQuestionForm);
+  };
+
+  const toggleShowAdminPending = () => {
+    setShowAdminPending(!showAdminPending);
   };
 
   useEffect(() => {
@@ -113,6 +121,11 @@ const HomePage = () => {
             <SubmitQuestionButton
               toggleShowQuestionForm={toggleShowQuestionForm}
             />
+            {user.role !== Roles.USER ? (
+              <AdminPendingButton
+                toggleShowAdminPending={toggleShowAdminPending}
+              />
+            ) : null}
             <LogoutButton />
           </div>
           {showErrorModal ? (
@@ -131,6 +144,11 @@ const HomePage = () => {
           {showOpenChallengeModal ? <OpenChallengeModal /> : null}
           {showQuestionForm ? (
             <QuestionForm toggleShowQuestionForm={toggleShowQuestionForm} />
+          ) : null}
+          {showAdminPending ? (
+            <AdminPendingQuestions
+              toggleShowAdminPending={toggleShowAdminPending}
+            />
           ) : null}
         </>
       ) : (

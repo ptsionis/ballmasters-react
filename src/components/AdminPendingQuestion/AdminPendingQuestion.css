@@ -2,9 +2,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-  padding: 20px 20px 20px 20px;
-  background-color: var(--bg-primary);
+  margin: 40px 0px;
+  padding: 30px;
+  background-color: var(--bg-primary-d);
   border-radius: 10px;
 }
 
@@ -43,6 +43,8 @@
 
 .pending-item-radio-group {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pending-item-radio-option {
@@ -106,5 +108,13 @@
 
   .pending-item-radio-option {
     margin-right: 0px;
+  }
+
+  .pending-item-button-wrapper {
+    flex-direction: column;
+  }
+
+  .pending-item-button {
+    margin: 10px 0px;
   }
 }

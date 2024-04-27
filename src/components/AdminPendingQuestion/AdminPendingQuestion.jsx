@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Categories } from "../../models/enums/categoriesEnum";
-import {
-  acceptPendingQuestion,
-  deletePendingQuestion,
-  updatePendingQuestion,
-} from "../../services/pendingQuestionService";
 import { capitalizeFirstLetter } from "../../utils/otherUtils";
 
 import "./AdminPendingQuestion.css";
+import { AppContext } from "../../App";
+import { Question } from "../../models/Question";
 
 const AdminPendingQuestion = ({
   id,
@@ -22,8 +19,8 @@ const AdminPendingQuestion = ({
   correctId,
   source,
   userId,
-  loadPendingQuestions,
 }) => {
+  const { socket } = useContext(AppContext);
   const [editedQuestion, setEditedQuestion] = useState(question);
   const [editedCategory, setEditedCategory] = useState(category);
   const [editedLevel, setEditedLevel] = useState(level);
@@ -32,39 +29,37 @@ const AdminPendingQuestion = ({
   const [editedAnswer3, setEditedAnswer3] = useState(answer3);
   const [editedAnswer4, setEditedAnswer4] = useState(answer4);
   const [editedCorrectId, setEditedCorrectId] = useState(correctId);
+  const [isDisplayed, setIsDisplayed] = useState(true);
 
-  const acceptPending = async () => {
-    const res = await acceptPendingQuestion(id);
-    if (res) {
-      loadPendingQuestions();
-    }
+  const deletePending = () => {
+    socket.emit("delete_pending_question", id);
   };
 
-  const deletePending = async () => {
-    const res = await deletePendingQuestion(id);
-    if (res) {
-      loadPendingQuestions();
-    }
-  };
-
-  const saveChanges = async () => {
-    const updatedData = {
+  const saveQuestion = async () => {
+    const acceptedQuestion = new Question(
       id,
-      question: editedQuestion,
-      category: editedCategory,
-      level: editedLevel,
-      answer1: editedAnswer1,
-      answer2: editedAnswer2,
-      answer3: editedAnswer3,
-      answer4: editedAnswer4,
-      correctId: editedCorrectId,
-    };
+      editedQuestion,
+      editedCategory,
+      editedLevel,
+      editedAnswer1,
+      editedAnswer2,
+      editedAnswer3,
+      editedAnswer4,
+      editedCorrectId
+    );
 
-    const res = await updatePendingQuestion(updatedData);
-    if (res) {
-      loadPendingQuestions();
-    }
+    socket.emit("accept_pending_question", acceptedQuestion);
   };
+
+  socket.on("accept_pending_success", (pendingQuestionId) => {
+    if (id === pendingQuestionId) setIsDisplayed(false);
+  });
+
+  socket.on("delete_pending_success", (pendingQuestionId) => {
+    if (id === pendingQuestionId) setIsDisplayed(false);
+  });
+
+  if (!isDisplayed) return null;
 
   return (
     <div className="admin-pending-item">
@@ -225,15 +220,9 @@ const AdminPendingQuestion = ({
       <div className="pending-item-button-wrapper">
         <button
           className="pending-item-button pending-item-button-accept"
-          onClick={acceptPending}
+          onClick={saveQuestion}
         >
-          Accept
-        </button>
-        <button
-          className="pending-item-button pending-item-button-modify"
-          onClick={saveChanges}
-        >
-          Modify
+          Save
         </button>
         <button
           className="pending-item-button pending-item-button-delete"

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { fetchAllQuestionData } from "../services/questionService";
 
 import AdminQuestion from "../components/AdminQuestion/AdminQuestion";
-import PageHeader from "../components/PageHeader/PageHeader";
 
 import "./AdminQuestionsPage.css";
 
@@ -33,7 +32,6 @@ const AdminQuestionsPage = () => {
   return (
     <main className="admin-questions-main">
       <div className="admin-questions-wrapper">
-        <PageHeader title={"All Questions"} />
         {questions.map((item) => {
           return (
             <AdminQuestion

@@ -1,5 +1,4 @@
 import { React, useContext } from "react";
-import PageHeader from "../components/PageHeader/PageHeader";
 import MyProfile from "../components/MyProfile/MyProfile";
 
 import { AppContext } from "../App";
