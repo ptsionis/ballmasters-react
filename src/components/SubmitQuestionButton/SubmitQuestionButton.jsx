@@ -4,7 +4,10 @@ import "./SubmitQuestionButton.css";
 
 const SubmitQuestionButton = ({ toggleShowQuestionForm }) => {
   return (
-    <button className="submit-question-button" onClick={toggleShowQuestionForm}>
+    <button
+      className="main-menu-button submit-question-button"
+      onClick={toggleShowQuestionForm}
+    >
       Submit a Question
     </button>
   );

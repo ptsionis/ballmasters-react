@@ -29,6 +29,7 @@
   align-items: center;
   flex: 1;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .frienditem-name-span {

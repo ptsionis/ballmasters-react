@@ -1,16 +1,6 @@
-.progress-bar-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px;
-  padding: 0px 50px;
-}
-
 .progress-bar-outer {
   height: 25px;
   width: 100%;
-  margin: 0px 10px;
   border-radius: 10px;
   display: flex;
   justify-content: start;
@@ -23,32 +13,5 @@
   height: 100%;
   border-radius: 10px;
   transition: width 1s ease;
-}
-
-.progress-amateur {
-  background-color: rgb(58, 196, 238);
-}
-
-.progress-beginner {
-  background-color: rgb(165, 54, 3);
-}
-
-.progress-pro {
-  background-color: rgb(233, 185, 26);
-}
-
-.progress-master {
-  background-color: rgb(18, 218, 141);
-}
-
-.progress-virtuoso {
-  background-color: rgb(22, 76, 224);
-}
-
-.progress-grandmaster {
-  background-color: rgb(141, 23, 238);
-}
-
-.progress-legend {
-  background-color: rgb(255, 15, 15);
+  background-color: var(--btn-primary);
 }

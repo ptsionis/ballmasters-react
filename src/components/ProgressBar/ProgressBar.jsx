@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./ProgressBar.css";
 import { FaInfinity } from "react-icons/fa6";
 
-const ProgressBar = ({ currentValue, goalValue, rank }) => {
+import "./ProgressBar.css";
+
+const ProgressBar = ({ currentValue, goalValue }) => {
   const [barWidth, setBarWidth] = useState(0);
 
   useEffect(() => {
@@ -18,17 +19,13 @@ const ProgressBar = ({ currentValue, goalValue, rank }) => {
   }, []);
 
   return (
-    <div className="progress-bar-wrapper">
-      <span>{currentValue}</span>
-      <div className="progress-bar-outer">
-        <div
-          className={`progress-bar-inner progress-${rank}`}
-          style={{
-            width: `${barWidth}%`,
-          }}
-        ></div>
-      </div>
-      <span>{goalValue !== 0 ? goalValue : <FaInfinity />}</span>
+    <div className="progress-bar-outer">
+      <div
+        className={`progress-bar-inner`}
+        style={{
+          width: `${barWidth}%`,
+        }}
+      ></div>
     </div>
   );
 };

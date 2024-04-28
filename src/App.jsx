@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Loader from "./components/Loader/Loader";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import UserPage from "./pages/UserPage";
 import AdminQuestionsPage from "./pages/AdminQuestionsPage";
 import GamePage from "./pages/GamePage";
 import { checkIfAuthenticated } from "./utils/authUtils";
@@ -27,8 +26,6 @@ const App = () => {
     switch (currentPage) {
       case "/":
         return <HomePage />;
-      case "profile":
-        return <UserPage />;
       case "admin-questions":
         return <AdminQuestionsPage />;
       case "game":

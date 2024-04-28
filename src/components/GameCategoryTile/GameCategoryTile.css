@@ -1,6 +1,6 @@
 .game-category-tile {
-  width: 220px;
-  height: 70px;
+  width: 175px;
+  height: 65px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -17,8 +17,8 @@
 }
 
 .game-category-tile-disabled {
-  width: 220px;
-  height: 70px;
+  width: 175px;
+  height: 65px;
   text-align: center;
   display: flex;
   justify-content: center;

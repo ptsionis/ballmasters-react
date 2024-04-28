@@ -7,6 +7,12 @@ import Loader from "../components/Loader/Loader";
 import PlayVsFriendButton from "../components/PlayVsFriendButton/PlayVsFriendButton";
 import SubmitQuestionButton from "../components/SubmitQuestionButton/SubmitQuestionButton";
 import AdminPendingQuestions from "../components/AdminPendingQuestions/AdminPendingQuestions";
+import LogoutButton from "../components/LogoutButton/LogoutButton";
+import ChallengeModal from "../components/ChallengeModal/ChallengeModal";
+import OpenChallengeModal from "../components/OpenChallengeModal/OpenChallengeModal";
+import QuestionForm from "../components/QuestionForm/QuestionForm";
+import AdminPendingButton from "../components/AdminPendingButton/AdminPendingButton";
+import ProfilePreview from "../components/ProfilePreview/ProfilePreview";
 
 import { AppContext } from "../App";
 import { urlInitialization } from "../utils/pagesUtils";
@@ -14,15 +20,11 @@ import { getFirstName } from "../utils/userUtils";
 import { Roles } from "../models/enums/rolesEnum";
 
 import "./HomePage.css";
-import LogoutButton from "../components/LogoutButton/LogoutButton";
-import ChallengeModal from "../components/ChallengeModal/ChallengeModal";
-import OpenChallengeModal from "../components/OpenChallengeModal/OpenChallengeModal";
-import QuestionForm from "../components/QuestionForm/QuestionForm";
-import AdminPendingButton from "../components/AdminPendingButton/AdminPendingButton";
 
 const HomePage = () => {
   const { socket, user, setUser, setGameRoom, setCurrentPage } =
     useContext(AppContext);
+  const [showProfile, setShowProfile] = useState(false);
   const [showFriendlist, setShowFriendlist] = useState(false);
   const [showQuestionForm, setShowQuestionForm] = useState(false);
   const [showChallengeModal, setShowChallengeModal] = useState(false);
@@ -34,6 +36,10 @@ const HomePage = () => {
 
   const closeModal = () => {
     setShowErrorModal(false);
+  };
+
+  const toggleShowProfile = () => {
+    setShowProfile(!showProfile);
   };
 
   const toggleShowFriendlist = () => {
@@ -110,8 +116,9 @@ const HomePage = () => {
                 e.target.onerror = null;
                 e.target.src = "/images/noPicture.webp";
               }}
+              onClick={toggleShowProfile}
             />
-            <h3 className="home-welcome-text">
+            <h3 className="home-welcome-text" onClick={toggleShowProfile}>
               Welcome, {getFirstName(user.username)}!
             </h3>
           </div>
@@ -149,6 +156,9 @@ const HomePage = () => {
             <AdminPendingQuestions
               toggleShowAdminPending={toggleShowAdminPending}
             />
+          ) : null}
+          {showProfile ? (
+            <ProfilePreview user={user} toggleShowProfile={toggleShowProfile} />
           ) : null}
         </>
       ) : (

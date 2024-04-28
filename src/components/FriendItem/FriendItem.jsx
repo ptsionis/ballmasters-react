@@ -6,6 +6,7 @@ import ChallengeButton from "../ChallengeButton/ChallengeButton";
 import ChallengeCancelButton from "../ChallengeCancelButton/ChallengeCancelButton";
 import ChallengeAcceptButton from "../ChallengeAcceptButton/ChallengeAcceptButton";
 import ChallengeDeclineButton from "../ChallengeDeclineButton/ChallengeDeclineButton";
+import ProfilePreview from "../ProfilePreview/ProfilePreview";
 import { Availabilities } from "../../models/enums/availabilityEnum";
 
 import "./FriendItem.css";
@@ -13,9 +14,14 @@ import { getFirstName } from "../../utils/userUtils";
 
 const FriendItem = ({ friend }) => {
   const { socket, setGameRoom, setCurrentPage } = useContext(AppContext);
+  const [showProfile, setShowProfile] = useState(false);
   const [availability, setAvailability] = useState(Availabilities.OFFLINE);
   const [challengedMe, setChallengedMe] = useState(false);
   const [cancelButton, setCancelButton] = useState(false);
+
+  const toggleShowProfile = () => {
+    setShowProfile(!showProfile);
+  };
 
   socket.on(
     "friend_status",
@@ -96,39 +102,44 @@ const FriendItem = ({ friend }) => {
   });
 
   return (
-    <div className={`frienditem ${challengedMe ? "challenged-me" : ""}`}>
-      <div className="frienditem-name-wrapper">
-        <AvailabilityIcon availability={availability} />
-        <div className="frienditem-name">
-          <img
-            className="friend-img"
-            src={
-              friend.profilePicUrl
-                ? friend.profilePicUrl
-                : "/images/noPicture.webp"
-            }
-            alt="Pic"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/images/noPicture.webp";
-            }}
-          />
-          <span className="frienditem-name-span">
-            {getFirstName(friend.username)}
-          </span>
+    <>
+      <div className={`frienditem ${challengedMe ? "challenged-me" : ""}`}>
+        <div className="frienditem-name-wrapper">
+          <AvailabilityIcon availability={availability} />
+          <div className="frienditem-name" onClick={toggleShowProfile}>
+            <img
+              className="friend-img"
+              src={
+                friend.profilePicUrl
+                  ? friend.profilePicUrl
+                  : "/images/noPicture.webp"
+              }
+              alt="Pic"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/images/noPicture.webp";
+              }}
+            />
+            <span className="frienditem-name-span">
+              {getFirstName(friend.username)}
+            </span>
+          </div>
         </div>
+        {challengedMe ? (
+          <div className="challenge-response-wrapper">
+            <ChallengeAcceptButton friendId={friend.id} />
+            <ChallengeDeclineButton friendId={friend.id} />
+          </div>
+        ) : cancelButton ? (
+          <ChallengeCancelButton friendId={friend.id} />
+        ) : (
+          <ChallengeButton friendId={friend.id} availability={availability} />
+        )}
       </div>
-      {challengedMe ? (
-        <div className="challenge-response-wrapper">
-          <ChallengeAcceptButton friendId={friend.id} />
-          <ChallengeDeclineButton friendId={friend.id} />
-        </div>
-      ) : cancelButton ? (
-        <ChallengeCancelButton friendId={friend.id} />
-      ) : (
-        <ChallengeButton friendId={friend.id} availability={availability} />
-      )}
-    </div>
+      {showProfile ? (
+        <ProfilePreview user={friend} toggleShowProfile={toggleShowProfile} />
+      ) : null}
+    </>
   );
 };
 

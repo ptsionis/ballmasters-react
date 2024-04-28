@@ -4,6 +4,7 @@
   flex-direction: column;
   flex-grow: 1;
   padding: 35px 25px;
+  background-color: var(--bg-primary-d);
 }
 
 .game-header {

@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./GamePlayer.css";
+import { getFirstName } from "../../utils/userUtils";
 
 const GamePlayer = ({ player, isOpponent }) => {
   return (
@@ -16,7 +17,7 @@ const GamePlayer = ({ player, isOpponent }) => {
           e.target.src = "/images/noPicture.webp";
         }}
       />
-      <span className="game-player-name">{player.username}</span>
+      <span className="game-player-name">{getFirstName(player.username)}</span>
     </div>
   );
 };

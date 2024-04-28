@@ -12,7 +12,7 @@ const LogoutButton = () => {
     logout();
   };
   return (
-    <button className="logout-btn" onClick={userLogout}>
+    <button className="main-menu-button logout-btn" onClick={userLogout}>
       <MdLogout size={"24px"} />
       <span className="logout-btn-text">Logout</span>
     </button>

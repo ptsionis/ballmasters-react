@@ -4,7 +4,10 @@ import "./AdminPendingButton.css";
 
 const AdminPendingButton = ({ toggleShowAdminPending }) => {
   return (
-    <button className="admin-pending-button" onClick={toggleShowAdminPending}>
+    <button
+      className="main-menu-button admin-pending-button"
+      onClick={toggleShowAdminPending}
+    >
       Pending Questions
     </button>
   );

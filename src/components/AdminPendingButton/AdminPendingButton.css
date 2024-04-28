@@ -1,21 +1,6 @@
 .admin-pending-button {
-  width: 250px;
-  height: 50px;
-  margin: 10px 0px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 25px 45px 25px 45px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
   background-color: var(--btn-third-d);
   color: var(--text-primary);
-  font-size: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .admin-pending-button:hover {

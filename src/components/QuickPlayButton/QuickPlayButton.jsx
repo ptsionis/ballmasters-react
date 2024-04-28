@@ -12,7 +12,10 @@ const QuickPlayButton = () => {
   };
 
   return (
-    <button className="quick-play" onClick={createOpenChallenge}>
+    <button
+      className="main-menu-button quick-play"
+      onClick={createOpenChallenge}
+    >
       Quick Play
     </button>
   );
