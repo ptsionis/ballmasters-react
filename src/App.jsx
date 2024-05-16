@@ -1,10 +1,11 @@
 import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoginView from "./views/LoginView/LoginView";
+import HomeView from "./views/HomeView/HomeView";
+import AdminQuestionsView from "./views/AdminQuestionsView/AdminQuestionsView";
+import GameView from "./views/GameView/GameView";
 import Loader from "./components/Loader/Loader";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import AdminQuestionsPage from "./pages/AdminQuestionsPage";
-import GamePage from "./pages/GamePage";
+
 import { checkIfAuthenticated } from "./utils/authUtils";
 import socket from "./socketService";
 
@@ -25,11 +26,11 @@ const App = () => {
     }
     switch (currentPage) {
       case "/":
-        return <HomePage />;
+        return <HomeView />;
       case "admin-questions":
-        return <AdminQuestionsPage />;
+        return <AdminQuestionsView />;
       case "game":
-        return <GamePage />;
+        return <GameView />;
       default:
         return null;
     }
@@ -59,7 +60,7 @@ const App = () => {
           path="/login"
           element={
             !isAuthenticated ? (
-              <LoginPage />
+              <LoginView />
             ) : (
               <Navigate to={"/"} replace={true} />
             )

@@ -1,7 +1,7 @@
 export const checkIfAuthenticated = async () => {
   try {
     const response = await fetch(
-      "http://localhost:8000/auth/is-authenticated",
+      `${import.meta.env.VITE_SERVER_ORIGIN}/auth/is-authenticated`,
       {
         credentials: "include",
       }

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { fetchAllQuestionData } from "../services/questionService";
+import AdminQuestion from "../../components/AdminQuestion/AdminQuestion";
 
-import AdminQuestion from "../components/AdminQuestion/AdminQuestion";
+import "./AdminQuestionsView.css";
 
-import "./AdminQuestionsPage.css";
-
-const AdminQuestionsPage = () => {
+const AdminQuestionsView = () => {
   const [questions, setQuestions] = useState([]);
 
   const loadQuestions = async () => {
@@ -54,4 +52,4 @@ const AdminQuestionsPage = () => {
   );
 };
 
-export default AdminQuestionsPage;
+export default AdminQuestionsView;

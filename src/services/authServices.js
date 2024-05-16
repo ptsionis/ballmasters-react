@@ -1,7 +1,7 @@
 export const login = () => {
-  window.location.href = "http://localhost:8000/auth/facebook";
+  window.location.href = `${import.meta.env.VITE_SERVER_ORIGIN}/auth/facebook`;
 };
 
 export const logout = () => {
-  window.location.href = "http://localhost:8000/auth/logout";
+  window.location.href = `${import.meta.env.VITE_SERVER_ORIGIN}/auth/logout`;
 };

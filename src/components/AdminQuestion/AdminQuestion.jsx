@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 
+import { capitalizeFirstLetter } from "../../utils/otherUtils";
+import { Question } from "../../models/Question";
 import { Categories } from "../../models/enums/categoriesEnum";
 
-import { capitalizeFirstLetter } from "../../utils/otherUtils";
 import "./AdminQuestion.css";
-
-import {
-  updateQuestionData,
-  deleteQuestionData,
-} from "../../services/questionService";
-import { Question } from "../../models/Question";
 
 const AdminQuestion = ({
   id,

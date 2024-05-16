@@ -1,27 +1,27 @@
 import React, { useEffect, useContext, useState } from "react";
 
-import FriendList from "../components/FriendList/FriendList";
-import QuickPlayButton from "../components/QuickPlayButton/QuickPlayButton";
-import ModalCustom from "../components/ModalCustom/ModalCustom";
-import Loader from "../components/Loader/Loader";
-import PlayVsFriendButton from "../components/PlayVsFriendButton/PlayVsFriendButton";
-import SubmitQuestionButton from "../components/SubmitQuestionButton/SubmitQuestionButton";
-import AdminPendingQuestions from "../components/AdminPendingQuestions/AdminPendingQuestions";
-import LogoutButton from "../components/LogoutButton/LogoutButton";
-import ChallengeModal from "../components/ChallengeModal/ChallengeModal";
-import OpenChallengeModal from "../components/OpenChallengeModal/OpenChallengeModal";
-import QuestionForm from "../components/QuestionForm/QuestionForm";
-import AdminPendingButton from "../components/AdminPendingButton/AdminPendingButton";
-import ProfilePreview from "../components/ProfilePreview/ProfilePreview";
+import FriendList from "../../components/FriendList/FriendList";
+import QuickPlayButton from "../../components/QuickPlayButton/QuickPlayButton";
+import ModalCustom from "../../components/ModalCustom/ModalCustom";
+import Loader from "../../components/Loader/Loader";
+import PlayVsFriendButton from "../../components/PlayVsFriendButton/PlayVsFriendButton";
+import SubmitQuestionButton from "../../components/SubmitQuestionButton/SubmitQuestionButton";
+import AdminPendingQuestions from "../../components/AdminPendingQuestions/AdminPendingQuestions";
+import LogoutButton from "../../components/LogoutButton/LogoutButton";
+import ChallengeModal from "../../components/ChallengeModal/ChallengeModal";
+import OpenChallengeModal from "../../components/OpenChallengeModal/OpenChallengeModal";
+import QuestionForm from "../../components/QuestionForm/QuestionForm";
+import AdminPendingButton from "../../components/AdminPendingButton/AdminPendingButton";
+import ProfilePreview from "../../components/ProfilePreview/ProfilePreview";
 
-import { AppContext } from "../App";
-import { urlInitialization } from "../utils/pagesUtils";
-import { getFirstName } from "../utils/userUtils";
-import { Roles } from "../models/enums/rolesEnum";
+import { AppContext } from "../../App";
+import { urlInitialization } from "../../utils/pagesUtils";
+import { getFirstName } from "../../utils/userUtils";
+import { Roles } from "../../models/enums/rolesEnum";
 
-import "./HomePage.css";
+import "./HomeView.css";
 
-const HomePage = () => {
+const HomeView = () => {
   const { socket, user, setUser, setGameRoom, setCurrentPage } =
     useContext(AppContext);
   const [showProfile, setShowProfile] = useState(false);
@@ -168,4 +168,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomeView;

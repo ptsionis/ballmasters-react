@@ -1,15 +1,17 @@
 import React, { useEffect, useContext, useState } from "react";
-import GamePlayer from "../components/GamePlayer/GamePlayer";
-import { AppContext } from "../App";
-import { Stages } from "../models/enums/stagesEnum";
 
-import "./GamePage.css";
-import Loader from "../components/Loader/Loader";
-import Scoreboard from "../components/Scoreboard/Scoreboard";
-import GameCategoriesWrapper from "../components/GameCategoriesWrapper/GameCategoriesWrapper";
-import GameQuestionWrapper from "../components/GameQuestionWrapper/GameQuestionWrapper";
+import Loader from "../../components/Loader/Loader";
+import Scoreboard from "../../components/Scoreboard/Scoreboard";
+import GameCategoriesWrapper from "../../components/GameCategoriesWrapper/GameCategoriesWrapper";
+import GameQuestionWrapper from "../../components/GameQuestionWrapper/GameQuestionWrapper";
+import GamePlayer from "../../components/GamePlayer/GamePlayer";
 
-const GamePage = () => {
+import { AppContext } from "../../App";
+import { Stages } from "../../models/enums/stagesEnum";
+
+import "./GameView.css";
+
+const GameView = () => {
   const { user, gameRoom, setCurrentPage, socket } = useContext(AppContext);
   const [player, setPlayer] = useState(null);
   const [opponent, setOpponent] = useState(null);
@@ -80,4 +82,4 @@ const GamePage = () => {
   );
 };
 
-export default GamePage;
+export default GameView;
