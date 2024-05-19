@@ -2,7 +2,6 @@ import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginView from "./views/LoginView/LoginView";
 import HomeView from "./views/HomeView/HomeView";
-import AdminQuestionsView from "./views/AdminQuestionsView/AdminQuestionsView";
 import GameView from "./views/GameView/GameView";
 import Loader from "./components/Loader/Loader";
 
@@ -27,8 +26,6 @@ const App = () => {
     switch (currentPage) {
       case "/":
         return <HomeView />;
-      case "admin-questions":
-        return <AdminQuestionsView />;
       case "game":
         return <GameView />;
       default:

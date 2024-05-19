@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import AdminPendingQuestion from "../AdminPendingQuestion/AdminPendingQuestion";
+import Loader from "../Loader/Loader";
+
 import { AiOutlineClose } from "react-icons/ai";
 import { AppContext } from "../../App";
 
 import "./AdminPendingQuestions.css";
-import Loader from "../Loader/Loader";
 
 const AdminPendingQuestions = ({ toggleShowAdminPending }) => {
   const { socket } = useContext(AppContext);

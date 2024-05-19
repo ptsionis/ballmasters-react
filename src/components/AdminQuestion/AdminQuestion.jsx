@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { capitalizeFirstLetter } from "../../utils/otherUtils";
 import { Question } from "../../models/Question";
 import { Categories } from "../../models/enums/categoriesEnum";
+import { AppContext } from "../../App";
 
 import "./AdminQuestion.css";
 
@@ -16,8 +17,8 @@ const AdminQuestion = ({
   answer3,
   answer4,
   correctId,
-  loadQuestions,
 }) => {
+  const { socket } = useContext(AppContext);
   const [editedQuestion, setEditedQuestion] = useState(question);
   const [editedCategory, setEditedCategory] = useState(category);
   const [editedLevel, setEditedLevel] = useState(level);
@@ -26,12 +27,10 @@ const AdminQuestion = ({
   const [editedAnswer3, setEditedAnswer3] = useState(answer3);
   const [editedAnswer4, setEditedAnswer4] = useState(answer4);
   const [editedCorrectId, setEditedCorrectId] = useState(correctId);
+  const [isDisplayed, setIsDisplayed] = useState(true);
 
   const deleteQuestion = async () => {
-    const res = await deleteQuestionData(id);
-    if (res) {
-      loadQuestions();
-    }
+    socket.emit("delete_question", id);
   };
 
   const updateQuestion = async () => {
@@ -47,9 +46,14 @@ const AdminQuestion = ({
       editedCorrectId
     );
 
-    const res = await updateQuestionData(updatedQuestion);
-    console.log(res);
+    socket.emit("update_question", id, updatedQuestion);
+
+    socket.on("delete_question_success", (questionId) => {
+      if (id === questionId) setIsDisplayed(false);
+    });
   };
+
+  if (!isDisplayed) return null;
 
   return (
     <div className="admin-question-item">
@@ -205,7 +209,7 @@ const AdminQuestion = ({
           className="question-item-button question-item-button-modify"
           onClick={updateQuestion}
         >
-          Modify
+          Save
         </button>
         <button
           className="question-item-button question-item-button-delete"

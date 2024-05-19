@@ -20,6 +20,8 @@ import { getFirstName } from "../../utils/userUtils";
 import { Roles } from "../../models/enums/rolesEnum";
 
 import "./HomeView.css";
+import AdminQuestions from "../../components/AdminQuestions/AdminQuestions";
+import AdminQuestionsButton from "../../components/AdminQuestionsButton/AdminQuestionsButton";
 
 const HomeView = () => {
   const { socket, user, setUser, setGameRoom, setCurrentPage } =
@@ -30,6 +32,7 @@ const HomeView = () => {
   const [showChallengeModal, setShowChallengeModal] = useState(false);
   const [showOpenChallengeModal, setShowOpenChallengeModal] = useState(false);
   const [showAdminPending, setShowAdminPending] = useState(false);
+  const [showAdminQuestions, setShowAdminQuestions] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [challenger, setChallenger] = useState(null);
@@ -52,6 +55,10 @@ const HomeView = () => {
 
   const toggleShowAdminPending = () => {
     setShowAdminPending(!showAdminPending);
+  };
+
+  const toggleShowAdminQuestions = () => {
+    setShowAdminQuestions(!showAdminQuestions);
   };
 
   useEffect(() => {
@@ -129,9 +136,14 @@ const HomeView = () => {
               toggleShowQuestionForm={toggleShowQuestionForm}
             />
             {user.role !== Roles.USER ? (
-              <AdminPendingButton
-                toggleShowAdminPending={toggleShowAdminPending}
-              />
+              <>
+                <AdminPendingButton
+                  toggleShowAdminPending={toggleShowAdminPending}
+                />
+                <AdminQuestionsButton
+                  toggleShowAdminQuestions={toggleShowAdminQuestions}
+                />
+              </>
             ) : null}
             <LogoutButton />
           </div>
@@ -155,6 +167,11 @@ const HomeView = () => {
           {showAdminPending ? (
             <AdminPendingQuestions
               toggleShowAdminPending={toggleShowAdminPending}
+            />
+          ) : null}
+          {showAdminQuestions ? (
+            <AdminQuestions
+              toggleShowAdminQuestions={toggleShowAdminQuestions}
             />
           ) : null}
           {showProfile ? (
